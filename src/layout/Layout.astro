@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Header from "./Header.astro";
 ---
 
 <html lang="es">
@@ -20,7 +21,8 @@ import "../styles/global.css";
   </head>
   <body>
     <!-- TODO: Header -->
-    <main><slot /></main>
+    <Header />
+    <main class="bg-third-100"><slot /></main>
     <!-- TODO: Footer -->
   </body>
 </html>

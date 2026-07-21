@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Roboto Mono", monospace;
+  --font-title: "Pinyon Script", cursive;
+  --font-subtitle: "Quattrocento", sans-serif;
+
+  --color-main-600: #390000;
+  --color-main-500: #55060d;
+  --color-main: #b68780;
+  --color-secondary-600: #505036;
+  --color-secondary-400: #747439;
+  --color-secondary-200: #c6c4a0;
+
+  --color-third-200: #f1ebe1;
+  --color-third-100: #f1f0ec;
+}
