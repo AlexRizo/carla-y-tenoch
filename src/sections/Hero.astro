@@ -1,4 +1,5 @@
 ---
+import Divider from "@/components/common/Divider.astro";
 import { Heart } from "@lucide/astro";
 ---
 
@@ -10,11 +11,7 @@ import { Heart } from "@lucide/astro";
         <span class="text-6xl mt-14 mb-22">y</span>
         <span>Tenoch</span>
       </h1>
-      <div class="mt-14 mb-4 flex items-center gap-1">
-        <div class="h-0.5 w-full bg-rose-200"></div>
-        <Heart class="size-10 fill-rose-200 stroke-rose-200" />
-        <div class="h-0.5 w-full bg-rose-200"></div>
-      </div>
+      <Divider className="mt-14 mb-4" />
       <p class="text-xl text-center uppercase">
         <span>19 de diciembre del 2026</span>
         <br />

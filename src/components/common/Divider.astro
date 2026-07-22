@@ -1,0 +1,30 @@
+---
+import { Heart } from "@lucide/astro";
+import { cn } from "@/utils/cn";
+
+interface Props {
+  color?: "red" | "rose";
+  className?: string;
+}
+
+const { color = "rose", className } = Astro.props;
+---
+
+<div class={cn("flex items-center gap-1 ", className)}>
+  <div
+    class={cn("h-0.5 w-full", color === "red" ? "bg-main-600" : "bg-rose-200")}
+  >
+  </div>
+  <Heart
+    class={cn(
+      "size-10",
+      color === "red"
+        ? "fill-main-600 stroke-main-600"
+        : "fill-rose-200 stroke-rose-200",
+    )}
+  />
+  <div
+    class={cn("h-0.5 w-full", color === "red" ? "bg-main-600" : "bg-rose-200")}
+  >
+  </div>
+</div>

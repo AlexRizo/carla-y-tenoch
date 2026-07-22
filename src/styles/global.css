@@ -15,3 +15,7 @@
   --color-third-200: #f1ebe1;
   --color-third-100: #f1f0ec;
 }
+
+button {
+  @apply cursor-pointer
+}

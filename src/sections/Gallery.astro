@@ -1,0 +1,34 @@
+---
+import Carousel from "@/components/Carousel.astro";
+import Divider from "@/components/common/Divider.astro";
+
+// TODO: reemplazar con las fotos reales de la galería
+const images = [
+  { src: "/images/gallery/01.webp", alt: "Carla y Tenoch 1" },
+  { src: "/images/gallery/02.webp", alt: "Carla y Tenoch 2" },
+  { src: "/images/gallery/03.webp", alt: "Carla y Tenoch 3" },
+  { src: "/images/gallery/04.webp", alt: "Carla y Tenoch 4" },
+  { src: "/images/gallery/05.webp", alt: "Carla y Tenoch 5" },
+  { src: "/images/gallery/06.webp", alt: "Carla y Tenoch 6" },
+  { src: "/images/gallery/07.webp", alt: "Carla y Tenoch 7" },
+  { src: "/images/gallery/08.webp", alt: "Carla y Tenoch 8" },
+  { src: "/images/gallery/09.webp", alt: "Carla y Tenoch 9" },
+];
+---
+
+<section class="bg-third-100 py-18 pl-20 pr-14">
+  <div class="container mx-auto flex items-center gap-4 justify-between">
+    <article class="flex flex-col w-68">
+      <h1 class="text-3xl text-main-600 font-subtitle font-medium uppercase">Estás invitado/a<br /> a nuestra boda</h1>
+      <Divider color="red"/>
+      <p>
+        Nos casamos ______ nos <br/>haría muy feliz _____<br/> contar con tu presencia
+        _____.
+      </p>
+    </article>
+
+    <div class="px-10">
+      <Carousel images={images} />
+    </div>
+  </div>
+</section>

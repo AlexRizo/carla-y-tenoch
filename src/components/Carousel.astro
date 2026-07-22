@@ -1,0 +1,99 @@
+---
+import { ChevronLeft, ChevronRight } from "@lucide/astro";
+
+interface Props {
+  images: { src: string; alt: string }[];
+}
+
+const { images } = Astro.props;
+---
+
+<div data-carousel class="relative mx-auto max-w-[948px]">
+  <button
+    type="button"
+    data-prev
+    aria-label="Anterior"
+    class="absolute -left-10 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 flex size-10 items-center justify-center rounded-full border border-main-600/30 bg-third-100 text-main-600 shadow-sm transition hover:bg-main-600 hover:text-third-100 disabled:opacity-30 disabled:hover:bg-third-100 disabled:hover:text-main-600"
+  >
+    <ChevronLeft class="size-5" />
+  </button>
+
+  <div
+    data-track
+    class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+  >
+    {
+      images.map((image) => (
+        <div data-card class="w-[75%] shrink-0 snap-start sm:w-[45%] lg:w-[calc((100%-3rem)/4)]">
+          <div class="aspect-[3/4] overflow-hidden rounded-2xl shadow-md">
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <button
+    type="button"
+    data-next
+    aria-label="Siguiente"
+    class="absolute -right-10 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 flex size-10 items-center justify-center rounded-full border border-main-600/30 bg-third-100 text-main-600 shadow-sm transition hover:bg-main-600 hover:text-third-100 disabled:opacity-30 disabled:hover:bg-third-100 disabled:hover:text-main-600"
+  >
+    <ChevronRight class="size-5" />
+  </button>
+</div>
+
+<script>
+  function initCarousel(root: Element) {
+    const track = root.querySelector<HTMLElement>("[data-track]");
+    const prevBtn = root.querySelector<HTMLButtonElement>("[data-prev]");
+    const nextBtn = root.querySelector<HTMLButtonElement>("[data-next]");
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const cards = Array.from(track.querySelectorAll<HTMLElement>("[data-card]"));
+    if (cards.length === 0) return;
+
+    const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+
+    function step() {
+      return cards[0].getBoundingClientRect().width + gap;
+    }
+
+    function update() {
+      const maxScroll = track!.scrollWidth - track!.clientWidth;
+      prevBtn!.disabled = track!.scrollLeft <= 0;
+      nextBtn!.disabled = track!.scrollLeft >= maxScroll - 1;
+    }
+
+    let ticking = false;
+    track.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      track!.scrollBy({ left: -step(), behavior: "smooth" });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      track!.scrollBy({ left: step(), behavior: "smooth" });
+    });
+
+    // Recompute when layout settles after initial load (webfonts, images, viewport
+    // changes) since those don't fire a `scroll` event on the track themselves.
+    new ResizeObserver(() => update()).observe(track);
+
+    update();
+  }
+
+  document.querySelectorAll("[data-carousel]").forEach(initCarousel);
+</script>
