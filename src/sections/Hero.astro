@@ -1,17 +1,25 @@
-<section class="h-[850px] w-full flex flex-row bg-secondary-200 container mx-auto">
-  <article class="text-white flex-1">
-    <h1 class="font-title text-6xl">
-      <span>Carla</span>
-      <span>y</span>
-      <span>Tenoch</span>
-    </h1>
-    <div></div>
-    <p>
-      <span>19 de diciembre del 2026</span>
-      <span>Colima, Colima</span>
-    </p>
-  </article>
-  <picture>
-    <img src="/images/01-HOME.png" alt="Carla y Tenoch" class="h-full object-cover object-bottom mask-l-from-70%" />
-  </picture>
+---
+import { Heart } from "@lucide/astro";
+---
+
+<section class="h-dvh bg-[url('/images/01-HOME.webp')] bg-cover bg-bottom">
+  <div class="container mx-auto pl-10 h-full flex items-center">
+    <article class="text-white w-min">
+      <h1 class="font-title text-9xl flex flex-col text-center leading-0">
+        <span>Carla</span>
+        <span class="text-6xl mt-14 mb-22">y</span>
+        <span>Tenoch</span>
+      </h1>
+      <div class="mt-14 mb-4 flex items-center gap-1">
+        <div class="h-0.5 w-full bg-rose-200"></div>
+        <Heart class="size-10 fill-rose-200 stroke-rose-200" />
+        <div class="h-0.5 w-full bg-rose-200"></div>
+      </div>
+      <p class="text-xl text-center uppercase">
+        <span>19 de diciembre del 2026</span>
+        <br />
+        <span>Colima, MX</span>
+      </p>
+    </article>
+  </div>
 </section>
