@@ -1,0 +1,64 @@
+---
+import TimeItem from "./TimeItem.astro";
+---
+
+<article class="text-white flex justify-center my-4">
+  <div class="flex gap-3.5">
+    <!-- ? Días: -->
+    <TimeItem value="00" id="days" label="Días" />
+    <p class="text-5xl">:</p>
+    <!-- ? Horas: -->
+    <TimeItem value="00" id="hours" label="Horas" />
+    <p class="text-5xl">:</p>
+    <!-- ? Minutos: -->
+    <TimeItem value="00" id="minutes" label="Minutos" />
+    <p class="text-5xl">:</p>
+    <!-- ? Segundos: -->
+    <TimeItem value="00" id="seconds" label="Segundos" />
+  </div>
+</article>
+
+<style is:global>
+  @reference "@/styles/global.css";
+
+  .time-element {
+    @apply flex flex-col items-center leading-none min-w-19;
+  }
+</style>
+
+<script>
+  const daysElement = document.querySelector("#days") as HTMLSpanElement;
+  const hoursElement = document.querySelector("#hours") as HTMLSpanElement;
+  const minutesElement = document.querySelector("#minutes") as HTMLSpanElement;
+  const secondsElement = document.querySelector("#seconds") as HTMLSpanElement;
+
+  const weddingDate = "2026-12-19T16:00:00";
+  const targetDate = new Date(weddingDate);
+
+  const add0ToNumber = (number: number): string => {
+    return number < 10 ? `0${number}` : number.toString();
+  };
+
+  const interval = setInterval(() => {
+    const now = new Date();
+    const diff = targetDate.getTime() - now.getTime();
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    daysElement.textContent = add0ToNumber(days);
+    hoursElement.textContent = add0ToNumber(hours);
+    minutesElement.textContent = add0ToNumber(minutes);
+    secondsElement.textContent = add0ToNumber(seconds);
+
+    if (diff < 0) {
+      clearInterval(interval);
+      daysElement.textContent = "0";
+      hoursElement.textContent = "0";
+      minutesElement.textContent = "0";
+      secondsElement.textContent = "0";
+    }
+  }, 1000);
+</script>

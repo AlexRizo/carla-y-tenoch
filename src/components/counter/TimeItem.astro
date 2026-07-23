@@ -1,0 +1,14 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  id: "days" | "hours" | "minutes" | "seconds";
+}
+
+const { value, label, id } = Astro.props;
+---
+
+<p class="time-element font-subtitle">
+  <span id={id} class="text-6xl">{value}</span>
+  <span class="uppercase text-sm">{label}</span>
+</p>
