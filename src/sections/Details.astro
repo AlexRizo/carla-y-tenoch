@@ -1,0 +1,54 @@
+---
+import Divider from "@/components/common/Divider.astro";
+import DetailCard from "@/components/DetailCard.astro";
+import { Calendar, Church, Wine } from "@lucide/astro";
+
+const detailsData = [
+  {
+    icon: Calendar,
+    title: "Fecha",
+    value: "Sábado 19 de diciembre del 2026",
+  },
+  {
+    icon: Church,
+    title: "Ceremonia",
+    value: [
+      "Templo del Sagrado Corazón de Jesús",
+      "04:30 pm",
+      "Aldama s/n, Centro 28000 Colima, Col., México",
+    ],
+    button: true,
+    buttonText: "Ver en mapa",
+    href: "https://maps.app.goo.gl/L54d4pWp1Jj1J1J1A",
+  },
+  {
+    icon: Wine,
+    title: "Recepción",
+    value: [
+      "Jardín campestre Zona mágica",
+      "06:00 pm",
+      "2459 Comala, Col., México",
+    ],
+    button: true,
+    buttonText: "¿Cómo llegar?",
+    href: "https://maps.app.goo.gl/L54d4pWp1Jj1J1J1A",
+  },
+];
+---
+
+<section class="bg-third-100 p-10">
+  <div class="container mx-auto">
+    <article class="mx-auto w-fit">
+      <h1
+        class="text-center text-main-600 uppercase text-lg font-subtitle font-bold tracking-wider"
+      >
+        Detalles del evento
+      </h1>
+      <Divider color="red" />
+    </article>
+
+    <div class="grid grid-cols-3 divide-x divide-main-600/15">
+      {detailsData.map((detail) => <DetailCard {...detail} />)}
+    </div>
+  </div>
+</section>

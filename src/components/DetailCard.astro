@@ -1,0 +1,23 @@
+---
+import type { AstroComponent } from "@lucide/astro";
+
+interface Props {
+  icon: AstroComponent;
+  title: string;
+  value: string | string[];
+  button?: boolean;
+  buttonText?: string;
+  href?: string;
+}
+
+const { title, value, icon: Icon, button, buttonText, href } = Astro.props;
+---
+
+<article class="flex flex-col gap-3 items-center text-xs">
+  <Icon size={50} stroke-width={1.25} class="text-secondary-600" />
+  <h1 class="uppercase font-medium tracking-wider">{title}</h1>
+  <div class="text-center max-w-46 leading-relaxed">
+    {Array.isArray(value) ? value.map((item) => <p>{item}</p>) : <p>{value}</p>}
+  </div>
+  {button && <a href={href} target="_blank" rel="noopener" class="bg-secondary-600 hover:opacity-95 text-third-100 px-2.5 py-1.5 rounded mt-auto uppercase">{buttonText}</a>}
+</article>
