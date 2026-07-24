@@ -1,7 +1,16 @@
 ---
-interface Props 
+interface Props {
+  hour: string;
+  place: string;
+}
+
+const { hour, place } = Astro.props as Props;
 ---
 
-<div>
-
+<div class="flex flex-col items-center gap-2">
+  <slot />
+  <p class="flex flex-col text-center text-sm font-medium">
+    <span class="uppercase">{hour}</span>
+    <span>{place}</span>
+  </p>
 </div>

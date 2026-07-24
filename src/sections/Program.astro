@@ -1,7 +1,46 @@
 ---
+import ProgramDivider from "@/components/program/ProgramDivider.astro";
+import ProgramItem from "@/components/program/ProgramItem.astro";
+import { Church } from "@lucide/astro";
 
+const programs = [
+  {
+    hour: "04:30 pm",
+    place: "Misa",
+  },
+  {
+    hour: "06:30 pm",
+    place: "Recepción",
+  },
+  {
+    hour: "07:00 pm",
+    place: "Protocolo",
+  },
+  {
+    hour: "07:30 pm",
+    place: "Cena",
+  },
+  {
+    hour: "08:30 pm",
+    place: "Baile",
+  },
+];
 ---
 
 <section class="p-10">
-  <div class="container mx-auto border border-main-600/20 p-10"></div>
+  <div class="container mx-auto border border-main-600/20 p-10">
+    <h1 class="uppercase font-medium mb-4 w-max mx-auto">Programa</h1>
+    <div class="flex flex-row justify-center gap-10">
+      {
+        programs.map((program, idx) => (
+          <>
+            <ProgramItem {...program}>
+              <Church size={40} stroke-width={1.25} />
+            </ProgramItem>
+            {idx < programs.length - 1 && <ProgramDivider />}
+          </>
+        ))
+      }
+    </div>
+  </div>
 </section>
