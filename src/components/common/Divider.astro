@@ -12,7 +12,7 @@ const { color = "rose", className } = Astro.props;
 
 <div class={cn("flex items-center gap-1 ", className)}>
   <div
-    class={cn("h-0.5 w-full", color === "red" ? "bg-main-600" : "bg-rose-200")}
+    class={cn("h-px w-full", color === "red" ? "bg-main-600" : "bg-rose-200")}
   >
   </div>
   <Heart
@@ -24,7 +24,7 @@ const { color = "rose", className } = Astro.props;
     )}
   />
   <div
-    class={cn("h-0.5 w-full", color === "red" ? "bg-main-600" : "bg-rose-200")}
+    class={cn("h-px w-full", color === "red" ? "bg-main-600" : "bg-rose-200")}
   >
   </div>
 </div>

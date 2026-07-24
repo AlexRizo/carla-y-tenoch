@@ -1,0 +1,123 @@
+---
+import FormItem from "@/components/form/FormItem.astro";
+import CheckToggle from "@/components/form/CheckToggle.astro";
+import Divider from "@/components/common/Divider.astro";
+---
+
+<section class="bg-[#eee3dc]">
+  <div class="container mx-auto flex">
+    <form class="w-max p-10">
+      <article class="w-max mx-auto">
+        <h1 class="uppercase font-medium text-center tracking-wider">
+          CONFIRMA TU ASISTENCIA
+        </h1>
+        <Divider color="red" />
+      </article>
+      <div class="space-y-5">
+        <div class="flex flex-row gap-4">
+          <FormItem id="name">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nombre completo"
+            />
+          </FormItem>
+          <FormItem id="email">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Correo electrónico (opcional)"
+            />
+          </FormItem>
+        </div>
+        <div class="flex flex-row gap-4">
+          <FormItem id="phone">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Número de teléfono (opcional)"
+            />
+          </FormItem>
+          <FormItem id="invitation">
+            <div class="border border-black/15 p-3 rounded-sm">
+              <p class="text-xs">¿Asistirás?</p>
+              <CheckToggle id="invitation" checked />
+            </div>
+          </FormItem>
+        </div>
+        <FormItem
+          id="attendants"
+          label="¿Cuántos invitados asistirán? (incluyéndote)"
+        >
+          <select name="attendants" id="attendants">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </FormItem>
+        <FormItem id="message">
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Mensaje para los novios (opcional)"
+            class="resize-none"
+            rows={5}></textarea>
+        </FormItem>
+        <button
+          type="submit"
+          class="bg-main-600 hover:bg-main-500 text-white py-2 px-12 rounded-sm font-medium tracking-wider uppercase cursor-pointer transition-colors text-sm block mx-auto"
+        >
+          CONFIRMAR ASISTENCIA
+        </button>
+        <p class="text-center text-xs text-black/65"
+          >¡Gracias! eres muy importante para nosotros</p
+        >
+      </div>
+    </form>
+    <div class="w-96">
+      <picture class="w-96 h-[572px] relative">
+        <img
+          src="/images/gallery/07.webp"
+          alt="Carla y Tenoch"
+          class="size-full object-cover object-top absolute inset-0"
+        />
+      </picture>
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "@/styles/global.css";
+
+  input,
+  select,
+  textarea {
+    @apply py-2.5 px-3.5 border border-black/15 rounded-sm outline-0 focus:border-main transition-colors text-xs placeholder:text-black/65;
+  }
+
+  select {
+    @apply appearance-none bg-no-repeat pr-9;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-opacity='0.65' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-position: right 0.875rem center;
+    background-size: 0.7rem;
+  }
+
+  select option {
+    @apply text-black;
+  }
+
+  select option:disabled {
+    @apply text-black/45;
+  }
+
+  /* Mientras el placeholder sigue activo, el select cerrado se ve en gris */
+  select:has(option[value=""]:checked) {
+    @apply text-black/65;
+  }
+</style>

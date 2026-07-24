@@ -1,0 +1,93 @@
+---
+interface Props {
+  id: string;
+  name?: string;
+  yesLabel?: string;
+  noLabel?: string;
+  checked?: boolean;
+}
+
+const {
+  id,
+  name = id,
+  yesLabel = "Sí asistiré",
+  noLabel = "No podré asistir",
+  checked = false,
+} = Astro.props;
+---
+
+<div class="check-toggle">
+  <input type="checkbox" id={id} name={name} checked={checked} />
+  <label class="option option-yes" for={id}>
+    <span class="box">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+    </span>
+    {yesLabel}
+  </label>
+  <label class="option option-no" for={id}>
+    <span class="box">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18 6 6 18M6 6l12 12"></path>
+      </svg>
+    </span>
+    {noLabel}
+  </label>
+</div>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .check-toggle {
+    @apply flex flex-row gap-2;
+  }
+
+  /* Checkbox real: oculto pero accesible por teclado */
+  .check-toggle input {
+    @apply sr-only;
+  }
+
+  .option {
+    @apply flex flex-1 cursor-pointer select-none items-center gap-2 rounded-sm
+      text-xs text-black/65 transition-colors mt-1;
+  }
+
+  .box {
+    @apply flex size-4 shrink-0 items-center justify-center rounded-[3px]
+      border border-black/25 transition-colors;
+  }
+
+  .box svg {
+    @apply size-3 scale-50 opacity-0 transition;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* La opción activa no responde al click: evita que se destoglee sola */
+  .check-toggle input:checked ~ .option-yes,
+  .check-toggle input:not(:checked) ~ .option-no {
+    @apply pointer-events-none border-main text-main-500;
+  }
+
+  .check-toggle input:checked ~ .option-yes .box,
+  .check-toggle input:not(:checked) ~ .option-no .box {
+    @apply border-main bg-main text-white;
+  }
+
+  .check-toggle input:checked ~ .option-yes .box svg,
+  .check-toggle input:not(:checked) ~ .option-no .box svg {
+    @apply scale-100 opacity-100;
+  }
+
+  /* .check-toggle input:focus-visible ~ .option {
+    @apply border-main;
+  }
+
+  .option:hover {
+    @apply border-main/60;
+  } */
+</style>
