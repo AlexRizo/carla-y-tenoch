@@ -1,0 +1,64 @@
+---
+import InfoItem from "@/components/info/InfoItem.astro";
+import { Building2, CarFront, CloudSun, MapPin, Plane } from "@lucide/astro";
+
+const INFO_DATA = [
+  {
+    icon: Building2,
+    title: "Hospedaje",
+    description: "Hoteles sugeridos para tu estancia",
+    href: "",
+    label: "Ver opciones",
+  },
+  {
+    icon: Plane,
+    title: "Aeropuerto",
+    description: "Aeropuerto internacional de Colima (CLQ) a 25 min del evento",
+    href: "",
+    label: "Más info",
+  },
+  {
+    icon: CloudSun,
+    title: "Clima",
+    description: "Máx 29°C / Mín 18°C. Clima agradable en diciembre",
+    href: "",
+    label: "Ver pronóstico",
+  },
+  {
+    icon: CarFront,
+    title: "Transporte",
+    description:
+      "Transporte disponible. Estacionamiento en el lugar. Uber recomendado",
+    href: "",
+    label: "Ver más",
+  },
+  {
+    icon: MapPin,
+    title: "Recomendaciones",
+    description: "Tips para disfrutar tu visita a Colima",
+    href: "",
+    label: "Ver recomendaciones",
+  },
+];
+---
+
+<section class="bg-third-200">
+  <img
+    src="/images/gallery/09.webp"
+    alt="Carla y Tenoch"
+    class="w-full h-86 object-cover object-[0_30%]"
+  />
+  <div class="flex flex-row divide-x divide-main-600/25 container mx-auto">
+    {
+      INFO_DATA.map((info) => (
+        <InfoItem
+          icon={info.icon}
+          title={info.title}
+          description={info.description}
+          href={info.href}
+          label={info.label}
+        />
+      ))
+    }
+  </div>
+</section>
