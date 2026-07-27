@@ -36,8 +36,8 @@ const detailsData = [
 ];
 ---
 
-<section class="bg-third-100 p-10">
-  <div class="container mx-auto">
+<section class="bg-third-100 py-10 lg:p-10">
+  <div class="max-w-96 lg:container mx-auto">
     <article class="mx-auto w-fit">
       <h1
         class="text-center text-main-600 uppercase text-lg font-subtitle font-bold tracking-wider"
@@ -47,7 +47,9 @@ const detailsData = [
       <Divider color="red" />
     </article>
 
-    <div class="grid grid-cols-3 divide-x divide-main-600/15">
+    <div
+      class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-main-600/15"
+    >
       {detailsData.map((detail) => <DetailCard {...detail} />)}
     </div>
   </div>

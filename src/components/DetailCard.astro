@@ -13,7 +13,7 @@ interface Props {
 const { title, value, icon: Icon, button, buttonText, href } = Astro.props;
 ---
 
-<article class="flex flex-col gap-3 items-center text-xs">
+<article class="flex flex-col gap-3 items-center text-xs py-5 lg:py-0">
   <Icon size={50} stroke-width={1.25} class="text-secondary-600" />
   <h1 class="uppercase font-medium tracking-wider">{title}</h1>
   <div class="text-center max-w-46 leading-relaxed">

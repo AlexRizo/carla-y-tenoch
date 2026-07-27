@@ -3,16 +3,16 @@ import TimeItem from "./TimeItem.astro";
 ---
 
 <article class="text-white flex justify-center my-4">
-  <div class="flex gap-3.5">
+  <div class="flex gap-1 lg:gap-3.5">
     <!-- ? Días: -->
     <TimeItem value="00" id="days" label="Días" />
-    <p class="text-5xl">:</p>
+    <p class="text-3xl lg:text-5xl">:</p>
     <!-- ? Horas: -->
     <TimeItem value="00" id="hours" label="Horas" />
-    <p class="text-5xl">:</p>
+    <p class="text-3xl lg:text-5xl">:</p>
     <!-- ? Minutos: -->
     <TimeItem value="00" id="minutes" label="Minutos" />
-    <p class="text-5xl">:</p>
+    <p class="text-3xl lg:text-5xl">:</p>
     <!-- ? Segundos: -->
     <TimeItem value="00" id="seconds" label="Segundos" />
   </div>
@@ -22,7 +22,7 @@ import TimeItem from "./TimeItem.astro";
   @reference "@/styles/global.css";
 
   .time-element {
-    @apply flex flex-col items-center leading-none min-w-19;
+    @apply flex flex-col items-center leading-none min-w-18 lg:min-w-19;
   }
 </style>
 

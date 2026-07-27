@@ -24,7 +24,10 @@ const { images } = Astro.props;
   >
     {
       images.map((image) => (
-        <div data-card class="w-[75%] shrink-0 snap-start sm:w-[45%] lg:w-[calc((100%-3rem)/4)]">
+        <div
+          data-card
+          class="w-[75%] shrink-0 snap-start sm:w-[45%] lg:w-[calc((100%-3rem)/4)]"
+        >
           <div class="aspect-[3/4] overflow-hidden rounded-2xl shadow-md">
             <img
               src={image.src}
@@ -55,7 +58,9 @@ const { images } = Astro.props;
     const nextBtn = root.querySelector<HTMLButtonElement>("[data-next]");
     if (!track || !prevBtn || !nextBtn) return;
 
-    const cards = Array.from(track.querySelectorAll<HTMLElement>("[data-card]"));
+    const cards = Array.from(
+      track.querySelectorAll<HTMLElement>("[data-card]"),
+    );
     if (cards.length === 0) return;
 
     const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;

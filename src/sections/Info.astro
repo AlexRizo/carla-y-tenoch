@@ -42,13 +42,13 @@ const INFO_DATA = [
 ];
 ---
 
-<section class="bg-third-200">
+<section class="bg-third-200 py-4 lg:py-0">
   <img
     src="/images/gallery/09.webp"
     alt="Carla y Tenoch"
     class="w-full h-86 object-cover object-[0_30%]"
   />
-  <div class="flex flex-row divide-x divide-main-600/25 container mx-auto">
+  <div class="flex flex-col lg:flex-row divide-y lg:divide-y-0 lg:divide-x divide-main-600/25 max-w-96 lg:container mx-auto">
     {
       INFO_DATA.map((info) => (
         <InfoItem

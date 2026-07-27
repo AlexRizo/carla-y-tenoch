@@ -1,18 +1,23 @@
 ---
 import Divider from "@/components/common/Divider.astro";
-import { Heart } from "@lucide/astro";
 ---
 
-<section class="h-dvh bg-[url('/images/01-HOME.webp')] bg-cover bg-center">
-  <div class="container mx-auto pl-10 h-full flex items-center">
-    <article class="text-white w-min">
-      <h1 class="font-title text-9xl flex flex-col text-center leading-0">
+<section
+  class="h-dvh bg-[url('/images/gallery/01.webp')] lg:1bg-[url('/images/01-HOME.webp')] bg-cover bg-center"
+>
+  <div
+    class="max-w-96 lg:container mx-auto lg:pl-10 h-full flex flex-col lg:flex-row items-center"
+  >
+    <article class="text-white lg:w-min mt-24 lg:mt-0">
+      <h1
+        class="font-title text-7xl lg:text-9xl flex flex-col text-center leading-0"
+      >
         <span>Carla</span>
-        <span class="text-6xl mt-14 mb-22">y</span>
+        <span class="text-4xl lg:text-6xl mt-8 mb-12 lg:mt-14 lg:mb-22">y</span>
         <span>Tenoch</span>
       </h1>
       <Divider className="mt-14 mb-4" />
-      <p class="text-xl text-center uppercase">
+      <p class="text-lg lg:text-xl text-center uppercase">
         <span>19 de diciembre del 2026</span>
         <br />
         <span>Colima, MX</span>

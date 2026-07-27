@@ -1,12 +1,18 @@
 ---
+import { cn } from "@/utils/cn";
+import type { AstroComponent } from "@lucide/astro";
+
 interface Props {
   href: string;
-  label: string;
+  label: string | AstroComponent;
+  className?: string;
 }
 
-const { href, label } = Astro.props;
+const { href, label, className } = Astro.props;
+
+const Icon = label as AstroComponent;
 ---
 
-<a href={href} class="text-lg text-white">
-  {label}
+<a href={href} class={cn("text-lg text-white", className)}>
+  {typeof Icon === "string" ? label : <Icon />}
 </a>

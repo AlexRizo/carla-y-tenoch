@@ -27,10 +27,16 @@ const EXTRAS_DATA = [
 ];
 ---
 
-<section class="bg-third-100">
-  <div class="container mx-auto pb-6">
-    <h1 class="text-xl text-main-500 tracking-wider text-center pt-6 pb-2 uppercase">Extras</h1>
-    <div class="flex flex-row justify-center divide-x divide-main-600/25">
+<section class="bg-third-100 py-4 lg:py-0">
+  <div class="container mx-auto lg:pb-6">
+    <h1
+      class="text-xl text-main-500 tracking-wider text-center pt-6 pb-2 uppercase"
+    >
+      Extras
+    </h1>
+    <div
+      class="flex flex-col lg:flex-row justify-center divide-y lg:divide-y-0 lg:divide-x divide-main-600/25 max-w-96 lg:max-w-none mx-auto"
+    >
       {
         EXTRAS_DATA.map((extra) => (
           <ExtraItem
