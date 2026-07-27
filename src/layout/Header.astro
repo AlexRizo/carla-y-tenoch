@@ -1,16 +1,79 @@
 ---
 import NavLink from "@/components/navbar/NavLink.astro";
-import { Menu } from "@lucide/astro";
+import { Menu, X } from "@lucide/astro";
+
+const links = [
+  { href: "#inicio", label: "INICIO" },
+  { href: "#detalles", label: "DETALLES" },
+  { href: "#rsvp", label: "RSVP" },
+];
 ---
 
-<header class="bg-main-500 py-6 border-b border-third-200">
+<header class="relative z-50 bg-main-500 py-6 border-b border-third-200">
   <div class="container mx-auto flex flex-row items-center justify-between">
     <h1 class="text-white font-title text-5xl">Carla y Tenoch</h1>
-    <nav class="flex flex-row gap-8">
-      <NavLink href="#" label="INICIO" className="hidden lg:block" />
-      <NavLink href="#" label="DETALLES" className="hidden lg:block" />
-      <NavLink href="#" label="RSVP" className="hidden lg:block" />
-      <NavLink href="#menu" label={Menu} className="lg:hidden" />
+    <nav class="flex flex-row items-center gap-8">
+      {links.map((link) => <NavLink {...link} className="hidden lg:block" />)}
+      <button
+        id="menu-toggle"
+        type="button"
+        class="lg:hidden text-white"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <Menu id="menu-icon-open" />
+        <X id="menu-icon-close" class="hidden" />
+      </button>
     </nav>
   </div>
+
+  <nav
+    id="mobile-menu"
+    class="lg:hidden absolute top-full left-0 grid grid-rows-[0fr] w-full bg-main-500 transition-[grid-template-rows] duration-300 ease-in-out"
+  >
+    <div class="overflow-hidden">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="mobile-nav-link block text-white text-lg text-center py-4 border-t border-third-200/20"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
 </header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("#menu-toggle");
+  const menu = document.querySelector<HTMLElement>("#mobile-menu");
+  const iconOpen = document.querySelector<HTMLElement>("#menu-icon-open");
+  const iconClose = document.querySelector<HTMLElement>("#menu-icon-close");
+  const links = document.querySelectorAll<HTMLAnchorElement>(".mobile-nav-link");
+
+  const closeMenu = () => {
+    menu?.classList.remove("grid-rows-[1fr]");
+    menu?.classList.add("grid-rows-[0fr]");
+    toggle?.setAttribute("aria-expanded", "false");
+    iconOpen?.classList.remove("hidden");
+    iconClose?.classList.add("hidden");
+  };
+
+  const openMenu = () => {
+    menu?.classList.remove("grid-rows-[0fr]");
+    menu?.classList.add("grid-rows-[1fr]");
+    toggle?.setAttribute("aria-expanded", "true");
+    iconOpen?.classList.add("hidden");
+    iconClose?.classList.remove("hidden");
+  };
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  links.forEach((link) => link.addEventListener("click", closeMenu));
+</script>
