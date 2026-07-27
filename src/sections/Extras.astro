@@ -1,0 +1,47 @@
+---
+import { Hash } from "@lucide/astro";
+import ExtraItem from "@/components/extras/ExtraItem.astro";
+
+const EXTRAS_DATA = [
+  {
+    icon: "spotify",
+    title: "Playlist",
+    description: "Nuestra playlist especial para ti",
+    href: "",
+    label: "Ver opciones",
+  },
+  {
+    icon: Hash,
+    title: "Hashtag",
+    description: "Comparte tus fotos con nuestro hashtag #CarlaYTenoch2026",
+    href: "",
+    label: "Copiar",
+  },
+  {
+    icon: "googledrive",
+    title: "Comparte tus fotos",
+    description: "Sube tus fotos y sé parte del recuerdo",
+    href: "",
+    label: "Ir al drive",
+  },
+];
+---
+
+<section class="bg-third-100">
+  <div class="container mx-auto">
+    <h1 class="text-xl text-main-500 tracking-wider text-center pt-6 pb-2 uppercase">Extras</h1>
+    <div class="flex flex-row justify-center divide-x divide-main-600/25">
+      {
+        EXTRAS_DATA.map((extra) => (
+          <ExtraItem
+            icon={extra.icon}
+            title={extra.title}
+            description={extra.description}
+            href={extra.href}
+            label={extra.label}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

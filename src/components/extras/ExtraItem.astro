@@ -1,0 +1,37 @@
+---
+import type { AstroComponent } from "@lucide/astro";
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  icon: AstroComponent | string;
+  title: string;
+  description: string;
+  href: string;
+  label: string;
+}
+
+const { icon, title, description, href, label } = Astro.props;
+
+const LucideIcon = icon as AstroComponent;
+const iconPath = icon as string;
+---
+
+<article class="flex flex-col items-center w-96 gap-3 py-6">
+  <div class="bg-primary rounded-full">
+    {
+      typeof icon === "string" ? (
+        <Icon name={iconPath} class="size-10 text-secondary-600" />
+      ) : (
+        <LucideIcon class="size-10 text-secondary-600" stroke-width={1.25} />
+      )
+    }
+  </div>
+  <h2 class="text-sm font-semibold uppercase">{title}</h2>
+  <p class="text-xs text-center leading-relaxed max-w-50.5">{description}</p>
+  <a
+    href={href}
+    target="_blank"
+    class="text-xs uppercase text-white px-4 py-0.5 rounded bg-secondary-600 hover:opacity-90 transition-opacity mt-auto"
+    >{label}</a
+  >
+</article>
