@@ -8,12 +8,12 @@ interface Props {
 const { images } = Astro.props;
 ---
 
-<div data-carousel class="relative mx-auto max-w-[948px]">
+<div data-carousel class="relative mx-auto max-w-[240px] lg:max-w-[948px]">
   <button
     type="button"
     data-prev
     aria-label="Anterior"
-    class="absolute -left-10 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 flex size-10 items-center justify-center rounded-full border border-main-600/30 bg-third-100 text-main-600 shadow-sm transition hover:bg-main-600 hover:text-third-100 disabled:opacity-30 disabled:hover:bg-third-100 disabled:hover:text-main-600"
+    class="absolute -left-6 lg:-left-10 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 flex size-8 lg:size-10 items-center justify-center rounded-full border border-main-600/30 bg-third-100 text-main-600 shadow-sm transition hover:bg-main-600 hover:text-third-100 disabled:opacity-30 disabled:hover:bg-third-100 disabled:hover:text-main-600"
   >
     <ChevronLeft class="size-5" />
   </button>
@@ -26,7 +26,7 @@ const { images } = Astro.props;
       images.map((image) => (
         <div
           data-card
-          class="w-[75%] shrink-0 snap-start sm:w-[45%] lg:w-[calc((100%-3rem)/4)]"
+          class="w-full shrink-0 snap-start lg:w-[calc((100%-3rem)/4)]"
         >
           <div class="aspect-[3/4] overflow-hidden rounded-2xl shadow-md">
             <img
@@ -45,7 +45,7 @@ const { images } = Astro.props;
     type="button"
     data-next
     aria-label="Siguiente"
-    class="absolute -right-10 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 flex size-10 items-center justify-center rounded-full border border-main-600/30 bg-third-100 text-main-600 shadow-sm transition hover:bg-main-600 hover:text-third-100 disabled:opacity-30 disabled:hover:bg-third-100 disabled:hover:text-main-600"
+    class="absolute -right-6 lg:-right-10 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 flex size-8 lg:size-10 items-center justify-center rounded-full border border-main-600/30 bg-third-100 text-main-600 shadow-sm transition hover:bg-main-600 hover:text-third-100 disabled:opacity-30 disabled:hover:bg-third-100 disabled:hover:text-main-600"
   >
     <ChevronRight class="size-5" />
   </button>
