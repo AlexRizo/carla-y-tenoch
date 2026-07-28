@@ -1,0 +1,68 @@
+---
+import { Volume2, VolumeX } from "@lucide/astro";
+---
+
+<audio id="bg-music" src="/audio/invisible-string.mp3" loop preload="auto"></audio>
+
+<button
+  id="music-toggle"
+  type="button"
+  class="fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-main-500 text-white shadow-lg transition hover:scale-105"
+  aria-label="Pausar música"
+  aria-pressed="true"
+>
+  <Volume2 id="music-icon-on" class="h-5 w-5" />
+  <VolumeX id="music-icon-off" class="hidden h-5 w-5" />
+</button>
+
+<script>
+  const audio = document.querySelector<HTMLAudioElement>("#bg-music");
+  const toggle = document.querySelector<HTMLButtonElement>("#music-toggle");
+  const iconOn = document.querySelector<HTMLElement>("#music-icon-on");
+  const iconOff = document.querySelector<HTMLElement>("#music-icon-off");
+
+  if (audio && toggle && iconOn && iconOff) {
+    const showPlaying = () => {
+      iconOn.classList.remove("hidden");
+      iconOff.classList.add("hidden");
+      toggle.setAttribute("aria-label", "Pausar música");
+      toggle.setAttribute("aria-pressed", "true");
+    };
+
+    const showPaused = () => {
+      iconOn.classList.add("hidden");
+      iconOff.classList.remove("hidden");
+      toggle.setAttribute("aria-label", "Reproducir música");
+      toggle.setAttribute("aria-pressed", "false");
+    };
+
+    audio.volume = 0.5;
+
+    const tryAutoplay = () => {
+      audio
+        .play()
+        .then(showPlaying)
+        .catch(() => {
+          showPaused();
+          const startOnInteraction = () => {
+            audio.play().then(showPlaying).catch(() => {});
+            document.removeEventListener("click", startOnInteraction);
+            document.removeEventListener("touchstart", startOnInteraction);
+          };
+          document.addEventListener("click", startOnInteraction, { once: true });
+          document.addEventListener("touchstart", startOnInteraction, { once: true });
+        });
+    };
+
+    tryAutoplay();
+
+    toggle.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play().then(showPlaying).catch(() => {});
+      } else {
+        audio.pause();
+        showPaused();
+      }
+    });
+  }
+</script>
