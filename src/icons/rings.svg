@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="52 50 311 298" fill="none">
+  <!-- Anillo izquierdo -->
+  <circle cx="160" cy="240" r="105" stroke="black" stroke-width="6"/>
+  <circle cx="160" cy="240" r="88" stroke="black" stroke-width="4"/>
+
+  <!-- Anillo derecho -->
+  <circle cx="245" cy="230" r="115" stroke="black" stroke-width="6"/>
+  <circle cx="245" cy="230" r="96" stroke="black" stroke-width="4"/>
+
+  <!-- Remate decorativo izquierdo -->
+  <path d="M160 135 
+           C160 122 150 118 150 108 
+           C150 98 158 92 160 82 
+           C162 92 170 98 170 108 
+           C170 118 160 122 160 135 Z"
+        stroke="black" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Remate decorativo derecho (con volutas) -->
+  <path d="M245 115
+           C245 100 233 95 233 83
+           C233 71 243 64 245 52
+           C247 64 257 71 257 83
+           C257 95 245 100 245 115 Z"
+        stroke="black" stroke-width="4" stroke-linejoin="round"/>
+
+  <path d="M245 115
+           C225 115 218 125 210 122
+           C202 119 200 108 206 102
+           C212 96 222 100 226 108"
+        stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M245 115
+           C265 115 272 125 280 122
+           C288 119 290 108 284 102
+           C278 96 268 100 264 108"
+        stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

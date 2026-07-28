@@ -1,14 +1,26 @@
 ---
+import type { AstroComponent } from "@lucide/astro";
+import { Icon } from "astro-icon/components";
+
 interface Props {
   hour: string;
   place: string;
+  icon: AstroComponent | string;
 }
 
-const { hour, place } = Astro.props as Props;
+const { hour, place, icon } = Astro.props as Props;
+
+const LucideIcon = icon as AstroComponent;
 ---
 
 <div class="flex flex-col items-center gap-2">
-  <slot />
+  {
+    typeof icon === "string" ? (
+      <Icon name={icon} size={40} stroke-width={1.25} />
+    ) : (
+      <LucideIcon size={40} stroke-width={1.25} />
+    )
+  }
   <p class="flex flex-col text-center text-sm font-medium">
     <span class="uppercase">{hour}</span>
     <span>{place}</span>
