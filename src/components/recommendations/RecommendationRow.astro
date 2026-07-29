@@ -1,0 +1,27 @@
+---
+import type { AstroComponent } from "@lucide/astro";
+
+interface Props {
+  icon: AstroComponent;
+  title: string;
+  description: string;
+  dashed?: boolean;
+}
+
+const { icon: Icon, title, description, dashed = false } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex items-center gap-4 rounded-xl bg-third-100 p-3",
+    { "border border-dashed border-secondary-600/40": dashed },
+  ]}
+>
+  <div class="flex size-14 shrink-0 items-center justify-center rounded-lg bg-primary">
+    <Icon class="size-8 text-secondary-600" stroke-width={1.25} />
+  </div>
+  <div class="space-y-1">
+    <h3 class="text-sm font-semibold leading-tight">{title}</h3>
+    <p class="text-xs leading-relaxed text-secondary-600">{description}</p>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+---
+import { Building2, Church, Landmark, Mountain, Sailboat, Soup, TreePalm, X } from "@lucide/astro";
+import RecommendationRow from "@/components/recommendations/RecommendationRow.astro";
+
+const RECOMMENDATIONS = [
+  {
+    icon: Church,
+    title: "Comala",
+    description:
+      "Recorre su centro, disfruta los portales y prueba el café local en uno de los pueblos más encantadores del estado.",
+  },
+  {
+    icon: Landmark,
+    title: "Nogueras y cultura",
+    description:
+      "Visita Nogueras para conocer su historia, arte y rincones llenos de identidad colimense.",
+  },
+  {
+    icon: Mountain,
+    title: "Montaña y naturaleza",
+    description:
+      "Si te gusta la naturaleza, aprovecha las vistas hacia la zona del Volcán y lleva un suéter ligero para la tarde.",
+  },
+  {
+    icon: Building2,
+    title: "Centro de Colima",
+    description:
+      "Pasea por el centro histórico, sus jardines y templos para disfrutar una parte clásica de la ciudad.",
+  },
+  {
+    icon: TreePalm,
+    title: "Playa en Manzanillo",
+    description:
+      "Ideal para disfrutar del mar, restaurantes frente a la playa y atardeceres inolvidables.",
+  },
+  {
+    icon: Sailboat,
+    title: "Cuyutlán y costa",
+    description:
+      "Si prefieres una escapada más tranquila, visita Cuyutlán o El Paraíso y disfruta mariscos y vistas al mar.",
+  },
+  {
+    icon: Soup,
+    title: "Gastronomía local",
+    description:
+      "No te vayas sin probar sopitos, tatemado, pozole seco, café de Comala y una refrescante tuba.",
+    dashed: true,
+  },
+];
+---
+
+<dialog
+  id="recomendaciones-modal"
+  class="m-auto max-h-[85vh] w-[calc(100%-2rem)] max-w-md rounded-2xl bg-third-200 p-0 backdrop:bg-black/50"
+>
+  <div class="flex max-h-[85vh] flex-col">
+    <header class="flex items-center justify-between border-b border-main-600/25 px-5 py-4">
+      <div>
+        <h2 class="text-sm font-semibold uppercase">Recomendaciones</h2>
+        <p class="text-xs text-secondary-600">Ideas para disfrutar tu visita a Colima</p>
+      </div>
+      <button
+        id="recomendaciones-modal-close"
+        type="button"
+        aria-label="Cerrar"
+        class="rounded-full p-1.5 text-secondary-600 hover:bg-secondary-200/50"
+      >
+        <X class="size-5" />
+      </button>
+    </header>
+
+    <div class="flex-1 space-y-3 overflow-y-auto px-5 py-5">
+      {
+        RECOMMENDATIONS.map((item) => (
+          <RecommendationRow
+            icon={item.icon}
+            title={item.title}
+            description={item.description}
+            dashed={item.dashed}
+          />
+        ))
+      }
+    </div>
+
+    <footer class="border-t border-main-600/25 px-5 py-3">
+      <p class="text-center text-[0.7rem] italic text-secondary-600">
+        Sugerencias para disfrutar Colima, de la montaña al mar.
+      </p>
+    </footer>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#recomendaciones-modal");
+  const closeButton = document.querySelector<HTMLButtonElement>("#recomendaciones-modal-close");
+  const triggers = document.querySelectorAll<HTMLAnchorElement>('a[href="#recomendaciones-modal"]');
+
+  if (dialog && closeButton) {
+    function lockScroll() {
+      document.body.style.overflow = "hidden";
+    }
+
+    function unlockScroll() {
+      document.body.style.overflow = "";
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        dialog.showModal();
+        lockScroll();
+      });
+    });
+
+    closeButton.addEventListener("click", () => {
+      dialog.close();
+      unlockScroll();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+        unlockScroll();
+      }
+    });
+
+    dialog.addEventListener("cancel", unlockScroll);
+  }
+</script>

@@ -1,6 +1,8 @@
 ---
 import InfoItem from "@/components/info/InfoItem.astro";
 import HotelsModal from "@/components/hotel/HotelsModal.astro";
+import AirportModal from "@/components/airport/AirportModal.astro";
+import RecommendationsModal from "@/components/recommendations/RecommendationsModal.astro";
 import { Building2, CarFront, CloudSun, MapPin, Plane } from "@lucide/astro";
 
 const INFO_DATA = [
@@ -15,7 +17,7 @@ const INFO_DATA = [
     icon: Plane,
     title: "Aeropuerto",
     description: "Aeropuerto internacional de Colima (CLQ) a 25 min del evento",
-    href: "",
+    href: "#aeropuerto-modal",
     label: "Más info",
   },
   {
@@ -37,7 +39,7 @@ const INFO_DATA = [
     icon: MapPin,
     title: "Recomendaciones",
     description: "Tips para disfrutar tu visita a Colima",
-    href: "",
+    href: "#recomendaciones-modal",
     label: "Ver recomendaciones",
   },
 ];
@@ -63,4 +65,6 @@ const INFO_DATA = [
     }
   </div>
   <HotelsModal />
+  <AirportModal />
+  <RecommendationsModal />
 </section>

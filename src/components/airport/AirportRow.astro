@@ -1,0 +1,23 @@
+---
+import type { AstroComponent } from "@lucide/astro";
+
+interface Props {
+  icon: AstroComponent;
+  destination: string;
+  time: string;
+}
+
+const { icon: Icon, destination, time } = Astro.props;
+---
+
+<div class="flex items-center gap-4 rounded-xl bg-third-100 p-3">
+  <div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary">
+    <Icon class="size-7 text-secondary-600" stroke-width={1.25} />
+  </div>
+  <h3 class="flex-1 text-sm font-semibold leading-tight">{destination}</h3>
+  <div class="shrink-0 text-right text-secondary-600">
+    <p class="text-[0.65rem] leading-tight">Tiempo estimado</p>
+    <p class="text-sm font-semibold leading-tight">{time}</p>
+    <p class="text-[0.65rem] leading-tight">en auto</p>
+  </div>
+</div>
