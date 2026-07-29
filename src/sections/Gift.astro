@@ -1,0 +1,33 @@
+---
+import Divider from "@/components/common/Divider.astro";
+---
+
+<section class="bg-third-100 py-10 lg:py-20 px-4 lg:px-0">
+  <div class="max-w-96 lg:container mx-auto flex flex-col lg:flex-row-reverse gap-10 lg:gap-28 justify-center">
+    <div
+      class="relative after:content-[''] after:absolute after:inset-5 after:border after:border-white after:pointer-events-none"
+    >
+      <img
+        src="/images/gift.webp"
+        alt="Dress code"
+        class="w-full h-80 lg:w-130 lg:h-140 object-cover"
+      />
+    </div>
+    <article class="flex flex-col justify-center text-center lg:text-right">
+      <small class="uppercase tracking-wider text-main-500 mb-2"
+        >Nuestro mejor regalo de bodas</small
+      >
+      <h1 class="font-subtitle text-4xl lg:text-5xl italic">Tu compañía</h1>
+      <Divider color="red" className="my-5 lg:w-74 lg:ml-auto" />
+      <p class="lg:text-lg max-w-99">
+        <span> Tu compañía significa muchísimo para nosotros. </span>
+        <br /><br />
+        <span>
+          Como ya contamos con un hogar en Canadá, si deseas hacernos un regalo,
+          agradeceremos una aportación económica que destinaremos a seguir
+          construyendo nuestro futuro juntos.
+        </span>
+      </p>
+    </article>
+  </div>
+</section>

@@ -28,6 +28,7 @@ import Divider from "@/components/common/Divider.astro";
               type="text"
               id="name"
               name="name"
+              required
               placeholder="Nombre completo"
             />
           </FormItem>
@@ -36,6 +37,7 @@ import Divider from "@/components/common/Divider.astro";
               type="email"
               id="email"
               name="email"
+              required
               placeholder="Correo electrónico (opcional)"
             />
           </FormItem>
@@ -46,6 +48,7 @@ import Divider from "@/components/common/Divider.astro";
               type="tel"
               id="phone"
               name="phone"
+              required
               placeholder="Número de teléfono (opcional)"
             />
           </FormItem>
@@ -60,7 +63,7 @@ import Divider from "@/components/common/Divider.astro";
           id="attendants"
           label="¿Cuántos invitados asistirán? (incluyéndote)"
         >
-          <select name="attendants" id="attendants">
+          <select name="attendants" id="attendants" required>
             <option value="" disabled selected>Selecciona una opción</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -71,6 +74,7 @@ import Divider from "@/components/common/Divider.astro";
         </FormItem>
         <FormItem id="message">
           <textarea
+            required
             id="message"
             name="message"
             placeholder="Mensaje para los novios (opcional)"
@@ -127,3 +131,59 @@ import Divider from "@/components/common/Divider.astro";
     @apply text-black/65;
   }
 </style>
+
+<script>
+  interface WeddingRsvpData {
+    name: string;
+    email: string;
+    phone: string;
+    invitation: boolean | string;
+    attendants: string;
+    message: string;
+  }
+
+  const form = document.querySelector("form") as HTMLFormElement;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const values: WeddingRsvpData = {
+      name: (document.querySelector("#name") as HTMLInputElement).value,
+      email: (document.querySelector("#email") as HTMLInputElement).value,
+      phone: (document.querySelector("#phone") as HTMLInputElement).value,
+      invitation: (document.querySelector("#invitation") as HTMLInputElement)
+        .checked
+        ? "Sí asistiré"
+        : "No podré asistir",
+      attendants: (document.querySelector("#attendants") as HTMLInputElement)
+        .value,
+      message: (document.querySelector("#message") as HTMLInputElement).value,
+    };
+
+    return window.open(generateWhatsAppLink("523121225890", values), "_blank");
+  });
+
+  /**
+   * Genera un enlace de WhatsApp con los datos del formulario de la boda.
+   * @param targetPhone El número de teléfono destino (incluir código de país, ej. 523121234567)
+   * @param data Los datos recolectados del formulario
+   * @returns URL de WhatsApp con el mensaje prellenado
+   */
+  const generateWhatsAppLink = (
+    targetPhone: string,
+    data: WeddingRsvpData,
+  ): string => {
+    const messageBody = `¡Hola! Te envío mi confirmación para la boda:
+
+*Nombre:* ${data.name}
+*Correo:* ${data.email}
+*Celular:* ${data.phone}
+*¿Asistiré?:* ${data.invitation}
+*Cantidad de invitados:* ${data.attendants}
+*Mensaje:* ${data.message}`;
+
+    const encodedText = encodeURIComponent(messageBody);
+
+    return `https://wa.me/${targetPhone}?text=${encodedText}`;
+  };
+</script>
