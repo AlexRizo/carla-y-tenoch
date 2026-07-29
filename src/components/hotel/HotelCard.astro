@@ -1,0 +1,45 @@
+---
+import { Church, Wine } from "@lucide/astro";
+
+interface Props {
+  image: string;
+  name: string;
+  church_time: number;
+  reception_time: number;
+  href: string;
+}
+
+const { image, name, church_time, reception_time, href } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener"
+  class="flex items-center gap-4 rounded-xl bg-third-100 p-3 transition hover:opacity-90"
+>
+  <img
+    src={image}
+    alt={name}
+    class="h-20 w-20 shrink-0 rounded-lg object-cover"
+  />
+  <h3 class="flex-1 text-sm font-semibold leading-tight">{name}</h3>
+  <div class="flex shrink-0 gap-4">
+    <div class="flex flex-row items-center gap-1 text-secondary-600">
+      <Church class="size-5" stroke-width={1.5} />
+      <p class="text-center text-[0.65rem] leading-tight">
+        <span class="block">Al templo</span>
+        <span class="block font-semibold text-sm">{church_time} min</span>
+        <span class="block">en auto</span>
+      </p>
+    </div>
+    <div class="flex flex-row items-center gap-1 text-secondary-600">
+      <Wine class="size-5" stroke-width={1.5} />
+      <p class="text-center text-[0.65rem] leading-tight">
+        <span class="block">Al salón</span>
+        <span class="block font-semibold text-sm">{reception_time} min</span>
+        <span class="block">en auto</span>
+      </p>
+    </div>
+  </div>
+</a>

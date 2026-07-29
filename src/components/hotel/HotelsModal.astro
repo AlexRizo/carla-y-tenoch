@@ -1,0 +1,150 @@
+---
+import { Building2, Mountain, Trees, X } from "@lucide/astro";
+import HotelCard from "@/components/hotel/HotelCard.astro";
+
+const HOTEL_GROUPS = [
+  {
+    icon: Building2,
+    zone: "Centro de Colima",
+    hotels: [
+      {
+        image: "/images/hotels/hacienda-del-gobernador.webp",
+        name: "Hotel Boutique Hacienda del Gobernador Colima",
+        church_time: 5,
+        reception_time: 25,
+        href: "https://wubook.net/wbkd/wbk/?lcode=1753396768",
+      },
+      {
+        image: "/images/hotels/concierge-plaza-colima.webp",
+        name: "Hotel Concierge Plaza Colima",
+        church_time: 5,
+        reception_time: 25,
+        href: "https://conciergeplazacolima.com/es?occupancy=2&currency=MXN",
+      },
+    ],
+  },
+  {
+    icon: Trees,
+    zone: "Villa de Álvarez",
+    hotels: [
+      {
+        image: "/images/hotels/concierge-plaza-la-villa.webp",
+        name: "Concierge Plaza La Villa",
+        church_time: 10,
+        reception_time: 20,
+        href: "https://conciergeplazalavilla.com/es?occupancy=2&currency=MXN",
+      },
+    ],
+  },
+  {
+    icon: Mountain,
+    zone: "Comala",
+    hotels: [
+      {
+        image: "/images/hotels/comalitos-hotel.webp",
+        name: "Comalitas Hotel",
+        church_time: 20,
+        reception_time: 12,
+        href: "https://comalitas.com/",
+      },
+      {
+        image: "/images/hotels/casa-alvarada.webp",
+        name: "Hotel Casa Alvarada",
+        church_time: 20,
+        reception_time: 12,
+        href: "https://www.casaalvarada.com/",
+      },
+    ],
+  },
+];
+---
+
+<dialog
+  id="hospedaje-modal"
+  class="m-auto max-h-[85vh] w-[calc(100%-2rem)] max-w-md rounded-2xl bg-third-200 p-0 backdrop:bg-black/50"
+>
+  <div class="flex max-h-[85vh] flex-col">
+    <header class="flex items-center justify-between border-b border-main-600/25 px-5 py-4">
+      <div>
+        <h2 class="text-sm font-semibold uppercase">Hospedaje</h2>
+        <p class="text-xs text-secondary-600">Hoteles sugeridos para tu estancia</p>
+      </div>
+      <button
+        id="hospedaje-modal-close"
+        type="button"
+        aria-label="Cerrar"
+        class="rounded-full p-1.5 text-secondary-600 hover:bg-secondary-200/50"
+      >
+        <X class="size-5" />
+      </button>
+    </header>
+
+    <div class="flex-1 space-y-6 overflow-y-auto px-5 py-5">
+      {
+        HOTEL_GROUPS.map((group) => (
+          <div class="space-y-3">
+            <div class="flex items-center gap-2 rounded-full bg-secondary-600 px-3 py-1.5 text-white w-fit">
+              <group.icon class="size-4" stroke-width={1.5} />
+              <span class="text-xs font-semibold uppercase">{group.zone}</span>
+            </div>
+            <div class="space-y-3">
+              {group.hotels.map((hotel) => (
+                <HotelCard
+                  image={hotel.image}
+                  name={hotel.name}
+                  church_time={hotel.church_time}
+                  reception_time={hotel.reception_time}
+                  href={hotel.href}
+                />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <footer class="border-t border-main-600/25 px-5 py-3">
+      <p class="text-center text-[0.7rem] text-secondary-600">
+        Tiempos estimados en auto. Pueden variar según el tráfico.
+      </p>
+    </footer>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#hospedaje-modal");
+  const closeButton = document.querySelector<HTMLButtonElement>("#hospedaje-modal-close");
+  const triggers = document.querySelectorAll<HTMLAnchorElement>('a[href="#hospedaje-modal"]');
+
+  if (dialog && closeButton) {
+    function lockScroll() {
+      document.body.style.overflow = "hidden";
+    }
+
+    function unlockScroll() {
+      document.body.style.overflow = "";
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        dialog.showModal();
+        lockScroll();
+      });
+    });
+
+    closeButton.addEventListener("click", () => {
+      dialog.close();
+      unlockScroll();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+        unlockScroll();
+      }
+    });
+
+    dialog.addEventListener("cancel", unlockScroll);
+  }
+</script>

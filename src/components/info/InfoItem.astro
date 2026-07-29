@@ -20,7 +20,7 @@ const { icon: Icon, title, description, href, label } = Astro.props;
   <p class="text-xs text-center leading-relaxed max-w-50.5">{description}</p>
   <a
     href={href}
-    target="_blank"
+    target={href.startsWith("#") ? undefined : "_blank"}
     class="text-xs uppercase text-white px-6 py-1.5 rounded bg-secondary-600 hover:opacity-90 transition-opacity mt-auto"
     >{label}</a
   >

@@ -16,6 +16,20 @@
   --color-third-100: #f1f0ec;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 button {
   @apply cursor-pointer
 }

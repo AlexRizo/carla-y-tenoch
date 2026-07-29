@@ -1,5 +1,6 @@
 ---
 import InfoItem from "@/components/info/InfoItem.astro";
+import HotelsModal from "@/components/hotel/HotelsModal.astro";
 import { Building2, CarFront, CloudSun, MapPin, Plane } from "@lucide/astro";
 
 const INFO_DATA = [
@@ -7,7 +8,7 @@ const INFO_DATA = [
     icon: Building2,
     title: "Hospedaje",
     description: "Hoteles sugeridos para tu estancia",
-    href: "",
+    href: "#hospedaje-modal",
     label: "Ver opciones",
   },
   {
@@ -61,4 +62,5 @@ const INFO_DATA = [
       ))
     }
   </div>
+  <HotelsModal />
 </section>
