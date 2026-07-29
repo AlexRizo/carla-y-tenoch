@@ -5,8 +5,16 @@ import Divider from "@/components/common/Divider.astro";
 ---
 
 <section id="rsvp" class="bg-[#eee3dc]">
-  <div class="lg:w-max mx-auto flex flex-col-reverse lg:flex-row gap-4">
-    <form class="max-w-96 mx-auto lg:mx-0 lg:max-w-none lg:w-max py-10 px-4 lg:p-10">
+  <div
+    class="lg:w-max mx-auto flex flex-col-reverse lg:flex-row gap-4 relative"
+  >
+    <img
+      src="/images/ornamenta-04.svg"
+      class="pointer-events-none absolute -left-34 bottom-2/6 h-60 opacity-50"
+    />
+    <form
+      class="max-w-96 mx-auto lg:mx-0 lg:max-w-none lg:w-max py-10 px-4 lg:p-10"
+    >
       <article class="w-max mx-auto">
         <h1 class="uppercase font-medium text-center tracking-wider">
           CONFIRMA TU ASISTENCIA
@@ -75,17 +83,17 @@ import Divider from "@/components/common/Divider.astro";
         >
           CONFIRMAR ASISTENCIA
         </button>
-        <p class="text-center text-xs text-black/65"
-          >¡Gracias! eres muy importante para nosotros</p
-        >
+        <p class="text-center text-xs text-black/65">
+          ¡Gracias! eres muy importante para nosotros
+        </p>
       </div>
     </form>
     <div class="h-100 lg:h-144 w-full">
-        <img
-          src="/images/gallery/07.webp"
-          alt="Carla y Tenoch"
-          class="size-full object-cover"
-        />
+      <img
+        src="/images/gallery/07.webp"
+        alt="Carla y Tenoch"
+        class="size-full object-cover"
+      />
     </div>
   </div>
 </section>
