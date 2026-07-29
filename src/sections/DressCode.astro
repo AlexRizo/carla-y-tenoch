@@ -3,7 +3,7 @@ import Divider from "@/components/common/Divider.astro";
 ---
 
 <section class="bg-third-100 py-10 lg:py-20 px-4 lg:px-0">
-  <div class="max-w-96 lg:container mx-auto flex flex-col lg:flex-row gap-10 lg:gap-28 justify-center">
+  <div class="max-w-96 lg:container mx-auto flex flex-col lg:flex-row-reverse gap-10 lg:gap-28 justify-center">
     <div
       class="relative after:content-[''] after:absolute after:inset-5 after:border after:border-white after:pointer-events-none"
     >
@@ -13,10 +13,10 @@ import Divider from "@/components/common/Divider.astro";
         class="w-full h-80 lg:w-130 lg:h-140 object-cover"
       />
     </div>
-    <article class="flex flex-col justify-center text-center lg:text-left">
+    <article class="flex flex-col justify-center text-center lg:text-right">
       <small class="uppercase tracking-wider text-main-500 mb-2">Dress code</small>
       <h1 class="font-subtitle text-4xl lg:text-5xl italic">Formal</h1>
-      <Divider color="red" className="my-5 lg:w-46" />
+      <Divider color="red" className="my-5 lg:w-46 lg:ml-auto" />
       <p class="lg:text-lg max-w-94">
         Queremos que disfrutes esta celebración con nosotros. Te invitamos a
         vestir de manera formal y elegante para la ocasión.
