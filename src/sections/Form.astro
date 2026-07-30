@@ -37,7 +37,6 @@ import Divider from "@/components/common/Divider.astro";
               type="email"
               id="email"
               name="email"
-              required
               placeholder="Correo electrónico (opcional)"
             />
           </FormItem>
@@ -149,7 +148,8 @@ import Divider from "@/components/common/Divider.astro";
 
     const values: WeddingRsvpData = {
       name: (document.querySelector("#name") as HTMLInputElement).value,
-      email: (document.querySelector("#email") as HTMLInputElement).value,
+      email:
+        (document.querySelector("#email") as HTMLInputElement).value || "N/A",
       phone: (document.querySelector("#phone") as HTMLInputElement).value,
       invitation: (document.querySelector("#invitation") as HTMLInputElement)
         .checked
