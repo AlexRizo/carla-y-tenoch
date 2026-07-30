@@ -7,7 +7,7 @@ const EXTRAS_DATA = [
     icon: "spotify",
     title: "Playlist",
     description: "Nuestra playlist especial para ti",
-    href: "",
+    href: "https://open.spotify.com/playlist/05kYVhNZLFwOUmUkSJpZZm?si=CN31Eq9jT-q36gi8H7eqsQ&utm_source=copy-link&pi=VdwehctDTPGNy&nd=1&dlsi=d9f9d67df5bf44cd",
     label: "Ver opciones",
   },
   {
@@ -16,12 +16,13 @@ const EXTRAS_DATA = [
     description: "Comparte tus fotos con nuestro hashtag #CarlaYTenoch2026",
     href: "",
     label: "Copiar",
+    copyText: "#CarlaYTenoch2026",
   },
   {
     icon: "googledrive",
     title: "Comparte tus fotos",
     description: "Sube tus fotos y sé parte del recuerdo",
-    href: "",
+    href: "https://drive.google.com/drive/folders/1oW7xnKna2OyEh7OMG5wfaVZ2gUvYgIfx",
     label: "Ir al drive",
   },
 ];
@@ -45,6 +46,7 @@ const EXTRAS_DATA = [
             description={extra.description}
             href={extra.href}
             label={extra.label}
+            copyText={extra.copyText}
           />
         ))
       }

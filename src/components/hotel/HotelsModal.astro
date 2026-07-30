@@ -64,19 +64,18 @@ const HOTEL_GROUPS = [
   class="m-auto max-h-[85vh] w-[calc(100%-2rem)] max-w-md rounded-2xl bg-third-200 p-0 backdrop:bg-black/50"
 >
   <div class="flex max-h-[85vh] flex-col">
-    <header class="flex items-center justify-between border-b border-main-600/25 px-5 py-4">
-      <div>
-        <h2 class="text-sm font-semibold uppercase">Hospedaje</h2>
-        <p class="text-xs text-secondary-600">Hoteles sugeridos para tu estancia</p>
-      </div>
+    <header class="relative flex flex-col items-center gap-2 border-b border-main-600/25 px-5 pt-6 pb-4">
       <button
         id="hospedaje-modal-close"
         type="button"
         aria-label="Cerrar"
-        class="rounded-full p-1.5 text-secondary-600 hover:bg-secondary-200/50"
+        class="absolute right-3 top-3 rounded-full p-1.5 text-secondary-600 hover:bg-secondary-200/50"
       >
         <X class="size-5" />
       </button>
+      <Building2 class="size-8 text-secondary-600" stroke-width={1.5} />
+      <h2 class="text-lg font-bold uppercase tracking-wide text-secondary-600">Hospedaje</h2>
+      <p class="text-xs text-secondary-600">Hoteles sugeridos para tu estancia</p>
     </header>
 
     <div class="flex-1 space-y-6 overflow-y-auto px-5 py-5">

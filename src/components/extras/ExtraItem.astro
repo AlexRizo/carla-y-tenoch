@@ -8,9 +8,10 @@ interface Props {
   description: string;
   href: string;
   label: string;
+  copyText?: string;
 }
 
-const { icon, title, description, href, label } = Astro.props;
+const { icon, title, description, href, label, copyText } = Astro.props;
 
 const LucideIcon = icon as AstroComponent;
 const iconPath = icon as string;
@@ -28,10 +29,44 @@ const iconPath = icon as string;
   </div>
   <h2 class="text-sm font-semibold uppercase">{title}</h2>
   <p class="text-xs text-center leading-relaxed max-w-50.5">{description}</p>
-  <a
-    href={href}
-    target="_blank"
-    class="text-xs uppercase text-white px-4 py-0.5 rounded bg-secondary-600 hover:opacity-90 transition-opacity mt-auto"
-    >{label}</a
-  >
+  {
+    copyText ? (
+      <button
+        type="button"
+        data-copy-text={copyText}
+        data-copy-label={label}
+        class="text-xs uppercase text-white px-4 py-0.5 rounded bg-secondary-600 hover:opacity-90 transition-opacity mt-auto cursor-pointer"
+      >
+        {label}
+      </button>
+    ) : (
+      <a
+        href={href}
+        target="_blank"
+        class="text-xs uppercase text-white px-4 py-0.5 rounded bg-secondary-600 hover:opacity-90 transition-opacity mt-auto"
+      >
+        {label}
+      </a>
+    )
+  }
 </article>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-copy-text]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const text = button.dataset.copyText ?? "";
+      const originalLabel = button.dataset.copyLabel ?? button.textContent ?? "";
+
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        return;
+      }
+
+      button.textContent = "Copiado";
+      setTimeout(() => {
+        button.textContent = originalLabel;
+      }, 1500);
+    });
+  });
+</script>
