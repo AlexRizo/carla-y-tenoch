@@ -3,9 +3,10 @@ import Footer from "@/components/footer/Footer.astro";
 import MusicPlayer from "@/components/common/MusicPlayer.astro";
 import "../styles/global.css";
 import Header from "./Header.astro";
+import { t, lang } from "@/i18n";
 ---
 
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -14,19 +15,25 @@ import Header from "./Header.astro";
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Quattrocento:wght@400;700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Quattrocento:wght@400;700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Tangerine:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
     <meta name="generator" content={Astro.generator} />
-    <title>Carla y Tenoch</title>
+    <title data-i18n="meta.title">{t.meta.title}</title>
   </head>
   <body>
     <!-- TODO: Header -->
     <Header />
     <main class="bg-third-100"><slot /></main>
     <!-- TODO: Footer -->
-     <Footer />
+    <Footer />
     <MusicPlayer />
   </body>
 </html>
+
+<script>
+  import { initI18n } from "@/i18n/runtime";
+
+  initI18n();
+</script>

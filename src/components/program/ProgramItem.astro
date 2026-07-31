@@ -5,10 +5,11 @@ import { Icon } from "astro-icon/components";
 interface Props {
   hour: string;
   place: string;
+  placeKey?: string;
   icon: AstroComponent | string;
 }
 
-const { hour, place, icon } = Astro.props as Props;
+const { hour, place, placeKey, icon } = Astro.props as Props;
 
 const LucideIcon = icon as AstroComponent;
 ---
@@ -23,6 +24,6 @@ const LucideIcon = icon as AstroComponent;
   }
   <p class="flex flex-col text-center text-sm font-medium">
     <span class="uppercase">{hour}</span>
-    <span>{place}</span>
+    <span data-i18n={placeKey}>{place}</span>
   </p>
 </div>

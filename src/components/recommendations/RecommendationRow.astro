@@ -4,11 +4,13 @@ import type { AstroComponent } from "@lucide/astro";
 interface Props {
   icon: AstroComponent;
   title: string;
+  titleKey?: string;
   description: string;
+  descriptionKey?: string;
   dashed?: boolean;
 }
 
-const { icon: Icon, title, description, dashed = false } = Astro.props;
+const { icon: Icon, title, titleKey, description, descriptionKey, dashed = false } = Astro.props;
 ---
 
 <div
@@ -21,7 +23,7 @@ const { icon: Icon, title, description, dashed = false } = Astro.props;
     <Icon class="size-8 text-secondary-600" stroke-width={1.25} />
   </div>
   <div class="space-y-1">
-    <h3 class="text-sm font-semibold leading-tight">{title}</h3>
-    <p class="text-xs leading-relaxed text-secondary-600">{description}</p>
+    <h3 class="text-sm font-semibold leading-tight" data-i18n={titleKey}>{title}</h3>
+    <p class="text-xs leading-relaxed text-secondary-600" data-i18n={descriptionKey}>{description}</p>
   </div>
 </div>

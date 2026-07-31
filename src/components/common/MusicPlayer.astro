@@ -1,5 +1,6 @@
 ---
 import { Volume2, VolumeX } from "@lucide/astro";
+import { t } from "@/i18n";
 ---
 
 <audio id="bg-music" src="/audio/invisible-string.mp3" loop preload="auto"></audio>
@@ -8,7 +9,9 @@ import { Volume2, VolumeX } from "@lucide/astro";
   id="music-toggle"
   type="button"
   class="fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-main-500 text-white shadow-lg transition hover:scale-105"
-  aria-label="Pausar música"
+  aria-label={t.musicPlayer.pause}
+  data-i18n="musicPlayer.pause"
+  data-i18n-attr="aria-label"
   aria-pressed="true"
 >
   <Volume2 id="music-icon-on" class="h-5 w-5" />
@@ -16,6 +19,9 @@ import { Volume2, VolumeX } from "@lucide/astro";
 </button>
 
 <script>
+  import { dict } from "@/i18n";
+  import { getLang } from "@/i18n/runtime";
+
   const audio = document.querySelector<HTMLAudioElement>("#bg-music");
   const toggle = document.querySelector<HTMLButtonElement>("#music-toggle");
   const iconOn = document.querySelector<HTMLElement>("#music-icon-on");
@@ -25,14 +31,14 @@ import { Volume2, VolumeX } from "@lucide/astro";
     const showPlaying = () => {
       iconOn.classList.remove("hidden");
       iconOff.classList.add("hidden");
-      toggle.setAttribute("aria-label", "Pausar música");
+      toggle.setAttribute("aria-label", dict[getLang()].musicPlayer.pause);
       toggle.setAttribute("aria-pressed", "true");
     };
 
     const showPaused = () => {
       iconOn.classList.add("hidden");
       iconOff.classList.remove("hidden");
-      toggle.setAttribute("aria-label", "Reproducir música");
+      toggle.setAttribute("aria-label", dict[getLang()].musicPlayer.play);
       toggle.setAttribute("aria-pressed", "false");
     };
 

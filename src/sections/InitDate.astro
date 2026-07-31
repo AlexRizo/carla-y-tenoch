@@ -1,5 +1,6 @@
 ---
 import Counter from "@/components/counter/Counter.astro";
+import { t } from "@/i18n";
 ---
 
 <section class="bg-main-600 lg:px-10 py-6 overflow-hidden">
@@ -8,10 +9,10 @@ import Counter from "@/components/counter/Counter.astro";
       src="/images/ornamenta-01.svg"
       class="pointer-events-none absolute left-10 -bottom-5 rotate-6 h-40 opacity-40"
     />
-    <h1 class="text-white text-lg text-center uppercase">Cuenta Regresiva</h1>
+    <h1 class="text-white text-lg text-center uppercase" data-i18n="initDate.heading">{t.initDate.heading}</h1>
     <Counter />
-    <p class="text-center text-white text-sm lg:text-base">
-      19 de Diciembre del 2026 | 04:00 pm
+    <p class="text-center text-white text-sm lg:text-base" data-i18n="initDate.date">
+      {t.initDate.date}
     </p>
     <img
       src="/images/ornamenta-01.svg"

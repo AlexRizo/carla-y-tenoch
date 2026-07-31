@@ -2,6 +2,7 @@
 import FormItem from "@/components/form/FormItem.astro";
 import CheckToggle from "@/components/form/CheckToggle.astro";
 import Divider from "@/components/common/Divider.astro";
+import { t } from "@/i18n";
 ---
 
 <section id="rsvp" class="bg-[#eee3dc]">
@@ -16,8 +17,8 @@ import Divider from "@/components/common/Divider.astro";
       class="max-w-96 mx-auto lg:mx-0 lg:max-w-none lg:w-max py-10 px-4 lg:p-10"
     >
       <article class="w-max mx-auto">
-        <h1 class="uppercase font-medium text-center tracking-wider">
-          CONFIRMA TU ASISTENCIA
+        <h1 class="uppercase font-medium text-center tracking-wider" data-i18n="form.heading">
+          {t.form.heading}
         </h1>
         <Divider color="red" />
       </article>
@@ -29,7 +30,9 @@ import Divider from "@/components/common/Divider.astro";
               id="name"
               name="name"
               required
-              placeholder="Nombre completo"
+              placeholder={t.form.namePlaceholder}
+              data-i18n="form.namePlaceholder"
+              data-i18n-attr="placeholder"
             />
           </FormItem>
           <FormItem id="email">
@@ -37,7 +40,9 @@ import Divider from "@/components/common/Divider.astro";
               type="email"
               id="email"
               name="email"
-              placeholder="Correo electrónico (opcional)"
+              placeholder={t.form.emailPlaceholder}
+              data-i18n="form.emailPlaceholder"
+              data-i18n-attr="placeholder"
             />
           </FormItem>
         </div>
@@ -48,22 +53,32 @@ import Divider from "@/components/common/Divider.astro";
               id="phone"
               name="phone"
               required
-              placeholder="Número de teléfono (opcional)"
+              placeholder={t.form.phonePlaceholder}
+              data-i18n="form.phonePlaceholder"
+              data-i18n-attr="placeholder"
             />
           </FormItem>
           <FormItem id="invitation">
             <div class="border border-black/15 p-3 rounded-sm">
-              <p class="text-xs">¿Asistirás?</p>
-              <CheckToggle id="invitation" checked />
+              <p class="text-xs" data-i18n="form.attendingQuestion">{t.form.attendingQuestion}</p>
+              <CheckToggle
+                id="invitation"
+                checked
+                yesLabel={t.form.attendingYes}
+                yesLabelKey="form.attendingYes"
+                noLabel={t.form.attendingNo}
+                noLabelKey="form.attendingNo"
+              />
             </div>
           </FormItem>
         </div>
         <FormItem
           id="attendants"
-          label="¿Cuántos invitados asistirán? (incluyéndote)"
+          label={t.form.attendantsLabel}
+          labelKey="form.attendantsLabel"
         >
           <select name="attendants" id="attendants" required>
-            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="" disabled selected data-i18n="form.attendantsPlaceholder">{t.form.attendantsPlaceholder}</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -81,18 +96,21 @@ import Divider from "@/components/common/Divider.astro";
             required
             id="message"
             name="message"
-            placeholder="Mensaje para los novios (opcional)"
+            placeholder={t.form.messagePlaceholder}
+            data-i18n="form.messagePlaceholder"
+            data-i18n-attr="placeholder"
             class="resize-none"
             rows={5}></textarea>
         </FormItem>
         <button
           type="submit"
           class="bg-main-600 hover:bg-main-500 text-white py-2 px-12 rounded-sm font-medium tracking-wider uppercase cursor-pointer transition-colors text-sm block mx-auto"
+          data-i18n="form.submit"
         >
-          CONFIRMAR ASISTENCIA
+          {t.form.submit}
         </button>
-        <p class="text-center text-xs text-black/65">
-          ¡Gracias! eres muy importante para nosotros
+        <p class="text-center text-xs text-black/65" data-i18n="form.thanks">
+          {t.form.thanks}
         </p>
       </div>
     </form>
@@ -137,6 +155,9 @@ import Divider from "@/components/common/Divider.astro";
 </style>
 
 <script>
+  import { dict } from "@/i18n";
+  import { getLang } from "@/i18n/runtime";
+
   interface WeddingRsvpData {
     name: string;
     email: string;
@@ -151,21 +172,24 @@ import Divider from "@/components/common/Divider.astro";
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    const t = dict[getLang()];
+
     const values: WeddingRsvpData = {
       name: (document.querySelector("#name") as HTMLInputElement).value,
       email:
-        (document.querySelector("#email") as HTMLInputElement).value || "N/A",
+        (document.querySelector("#email") as HTMLInputElement).value ||
+        t.form.whatsapp.notProvided,
       phone: (document.querySelector("#phone") as HTMLInputElement).value,
       invitation: (document.querySelector("#invitation") as HTMLInputElement)
         .checked
-        ? "Sí asistiré"
-        : "No podré asistir",
+        ? t.form.attendingYes
+        : t.form.attendingNo,
       attendants: (document.querySelector("#attendants") as HTMLInputElement)
         .value,
       message: (document.querySelector("#message") as HTMLInputElement).value,
     };
 
-    return window.open(generateWhatsAppLink("523121225890", values), "_blank");
+    return window.open(generateWhatsAppLink("523121225890", values, t), "_blank");
   });
 
   /**
@@ -177,15 +201,16 @@ import Divider from "@/components/common/Divider.astro";
   const generateWhatsAppLink = (
     targetPhone: string,
     data: WeddingRsvpData,
+    t: (typeof dict)[keyof typeof dict],
   ): string => {
-    const messageBody = `¡Hola! Te envío mi confirmación para la boda:
+    const messageBody = `${t.form.whatsapp.intro}
 
-*Nombre:* ${data.name}
-*Correo:* ${data.email}
-*Celular:* ${data.phone}
-*¿Asistiré?:* ${data.invitation}
-*Cantidad de invitados:* ${data.attendants}
-*Mensaje:* ${data.message}`;
+*${t.form.whatsapp.name}* ${data.name}
+*${t.form.whatsapp.email}* ${data.email}
+*${t.form.whatsapp.phone}* ${data.phone}
+*${t.form.whatsapp.attending}* ${data.invitation}
+*${t.form.whatsapp.attendants}* ${data.attendants}
+*${t.form.whatsapp.message}* ${data.message}`;
 
     const encodedText = encodeURIComponent(messageBody);
 

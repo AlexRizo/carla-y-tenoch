@@ -1,24 +1,36 @@
 ---
 import NavLink from "@/components/navbar/NavLink.astro";
 import { Menu, X } from "@lucide/astro";
+import { t } from "@/i18n";
 
 const links = [
-  { href: "#inicio", label: "INICIO" },
-  { href: "#detalles", label: "DETALLES" },
-  { href: "#rsvp", label: "RSVP" },
+  { href: "#inicio", label: t.header.nav.inicio, labelKey: "header.nav.inicio" },
+  { href: "#detalles", label: t.header.nav.detalles, labelKey: "header.nav.detalles" },
+  { href: "#rsvp", label: t.header.nav.rsvp, labelKey: "header.nav.rsvp" },
 ];
 ---
 
 <header class="relative z-50 bg-main-500 py-6 border-b border-third-200">
   <div class="container mx-auto flex flex-row items-center justify-between px-4 lg:px-0">
-    <h1 class="text-white font-title text-5xl">Carla y Tenoch</h1>
+    <h1 class="text-white font-title text-5xl" data-i18n="header.title">{t.header.title}</h1>
     <nav class="flex flex-row items-center gap-8">
       {links.map((link) => <NavLink {...link} className="hidden lg:block" />)}
+      <div id="lang-switcher" class="flex items-center gap-1 text-xs font-semibold text-white">
+        <button type="button" data-lang-option="es" aria-label="Español" class="opacity-100">
+          ES
+        </button>
+        <span class="opacity-50">/</span>
+        <button type="button" data-lang-option="en" aria-label="English" class="opacity-50">
+          EN
+        </button>
+      </div>
       <button
         id="menu-toggle"
         type="button"
         class="lg:hidden text-white"
-        aria-label="Abrir menú"
+        aria-label={t.header.openMenu}
+        data-i18n="header.openMenu"
+        data-i18n-attr="aria-label"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
@@ -38,6 +50,7 @@ const links = [
           <a
             href={link.href}
             class="mobile-nav-link block text-white text-lg text-center py-4 border-t border-third-200/20"
+            data-i18n={link.labelKey}
           >
             {link.label}
           </a>
@@ -76,4 +89,30 @@ const links = [
   });
 
   links.forEach((link) => link.addEventListener("click", closeMenu));
+</script>
+
+<script>
+  import { getLang, setLang, type Lang } from "@/i18n/runtime";
+
+  const langButtons = document.querySelectorAll<HTMLButtonElement>("[data-lang-option]");
+
+  const updateActive = (lang: Lang) => {
+    langButtons.forEach((button) => {
+      const isActive = button.dataset.langOption === lang;
+      button.classList.toggle("opacity-100", isActive);
+      button.classList.toggle("opacity-50", !isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+  };
+
+  updateActive(getLang());
+  document.addEventListener("langchange", ((event: CustomEvent<Lang>) => {
+    updateActive(event.detail);
+  }) as EventListener);
+
+  langButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setLang(button.dataset.langOption as Lang);
+    });
+  });
 </script>

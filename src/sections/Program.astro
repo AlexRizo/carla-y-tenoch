@@ -2,31 +2,37 @@
 import ProgramDivider from "@/components/program/ProgramDivider.astro";
 import ProgramItem from "@/components/program/ProgramItem.astro";
 import { Blend, Church, Music, Utensils, Wine } from "@lucide/astro";
+import { t } from "@/i18n";
 
 const programs = [
   {
     hour: "04:00 pm",
-    place: "Misa",
+    place: t.program.misa,
+    placeKey: "program.misa",
     icon: Church,
   },
   {
     hour: "06:00 pm",
-    place: "Recepción",
+    place: t.program.recepcion,
+    placeKey: "program.recepcion",
     icon: Wine,
   },
   {
     hour: "07:00 pm",
-    place: "Protocolo",
+    place: t.program.protocolo,
+    placeKey: "program.protocolo",
     icon: "rings",
   },
   {
     hour: "07:30 pm",
-    place: "Cena",
+    place: t.program.cena,
+    placeKey: "program.cena",
     icon: Utensils,
   },
   {
     hour: "08:30 pm",
-    place: "Baile",
+    place: t.program.baile,
+    placeKey: "program.baile",
     icon: Music,
   },
 ];
@@ -34,7 +40,7 @@ const programs = [
 
 <section class="py-10 px-4 lg:py-10">
   <div class="max-w-96 lg:container mx-auto border border-main-600/20 p-10">
-    <h1 class="uppercase font-medium mb-4 w-max mx-auto">Programa</h1>
+    <h1 class="uppercase font-medium mb-4 w-max mx-auto" data-i18n="program.heading">{t.program.heading}</h1>
     <div
       class="flex flex-col lg:flex-row items-center justify-center gap-10"
     >

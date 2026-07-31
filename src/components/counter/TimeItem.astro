@@ -2,13 +2,14 @@
 interface Props {
   value: string;
   label: string;
+  labelKey?: string;
   id: "days" | "hours" | "minutes" | "seconds";
 }
 
-const { value, label, id } = Astro.props;
+const { value, label, labelKey, id } = Astro.props;
 ---
 
 <p class="time-element font-subtitle">
   <span id={id} class="text-4xl lg:text-6xl">{value}</span>
-  <span class="uppercase text-xs lg:text-sm">{label}</span>
+  <span class="uppercase text-xs lg:text-sm" data-i18n={labelKey}>{label}</span>
 </p>

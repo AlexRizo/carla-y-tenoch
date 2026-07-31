@@ -5,13 +5,16 @@ import { Icon } from 'astro-icon/components';
 interface Props {
   icon: AstroComponent | string;
   title: string;
+  titleKey?: string;
   description: string;
+  descriptionKey?: string;
   href: string;
   label: string;
+  labelKey?: string;
   copyText?: string;
 }
 
-const { icon, title, description, href, label, copyText } = Astro.props;
+const { icon, title, titleKey, description, descriptionKey, href, label, labelKey, copyText } = Astro.props;
 
 const LucideIcon = icon as AstroComponent;
 const iconPath = icon as string;
@@ -27,14 +30,14 @@ const iconPath = icon as string;
       )
     }
   </div>
-  <h2 class="text-sm font-semibold uppercase">{title}</h2>
-  <p class="text-xs text-center leading-relaxed max-w-50.5">{description}</p>
+  <h2 class="text-sm font-semibold uppercase" data-i18n={titleKey}>{title}</h2>
+  <p class="text-xs text-center leading-relaxed max-w-50.5" data-i18n={descriptionKey}>{description}</p>
   {
     copyText ? (
       <button
         type="button"
         data-copy-text={copyText}
-        data-copy-label={label}
+        data-i18n={labelKey}
         class="text-xs uppercase text-white px-4 py-0.5 rounded bg-secondary-600 hover:opacity-90 transition-opacity mt-auto cursor-pointer"
       >
         {label}
@@ -44,6 +47,7 @@ const iconPath = icon as string;
         href={href}
         target="_blank"
         class="text-xs uppercase text-white px-4 py-0.5 rounded bg-secondary-600 hover:opacity-90 transition-opacity mt-auto"
+        data-i18n={labelKey}
       >
         {label}
       </a>
@@ -52,10 +56,13 @@ const iconPath = icon as string;
 </article>
 
 <script>
+  import { dict } from "@/i18n";
+  import { getLang } from "@/i18n/runtime";
+
   document.querySelectorAll<HTMLButtonElement>("[data-copy-text]").forEach((button) => {
     button.addEventListener("click", async () => {
       const text = button.dataset.copyText ?? "";
-      const originalLabel = button.dataset.copyLabel ?? button.textContent ?? "";
+      const originalLabel = button.textContent ?? "";
 
       try {
         await navigator.clipboard.writeText(text);
@@ -63,7 +70,7 @@ const iconPath = icon as string;
         return;
       }
 
-      button.textContent = "Copiado";
+      button.textContent = dict[getLang()].extras.hashtag.copied;
       setTimeout(() => {
         button.textContent = originalLabel;
       }, 1500);

@@ -1,5 +1,6 @@
 ---
 import { ChevronLeft, ChevronRight } from "@lucide/astro";
+import { t } from "@/i18n";
 
 interface Props {
   images: { src: string; alt: string }[];
@@ -12,7 +13,9 @@ const { images } = Astro.props;
   <button
     type="button"
     data-prev
-    aria-label="Anterior"
+    aria-label={t.carousel.prev}
+    data-i18n="carousel.prev"
+    data-i18n-attr="aria-label"
     class="absolute -left-6 lg:-left-10 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 flex size-8 lg:size-10 items-center justify-center rounded-full border border-main-600/30 bg-third-100 text-main-600 shadow-sm transition hover:bg-main-600 hover:text-third-100 disabled:opacity-30 disabled:hover:bg-third-100 disabled:hover:text-main-600"
   >
     <ChevronLeft class="size-5" />
@@ -44,7 +47,9 @@ const { images } = Astro.props;
   <button
     type="button"
     data-next
-    aria-label="Siguiente"
+    aria-label={t.carousel.next}
+    data-i18n="carousel.next"
+    data-i18n-attr="aria-label"
     class="absolute -right-6 lg:-right-10 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 flex size-8 lg:size-10 items-center justify-center rounded-full border border-main-600/30 bg-third-100 text-main-600 shadow-sm transition hover:bg-main-600 hover:text-third-100 disabled:opacity-30 disabled:hover:bg-third-100 disabled:hover:text-main-600"
   >
     <ChevronRight class="size-5" />

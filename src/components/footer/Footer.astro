@@ -1,5 +1,6 @@
 ---
 import { Circle } from "@lucide/astro";
+import { t } from "@/i18n";
 ---
 
 <footer class="bg-main-600 py-10 px-4 lg:px-0 overflow-hidden">
@@ -9,13 +10,17 @@ import { Circle } from "@lucide/astro";
       class="pointer-events-none absolute -left-10 -bottom-16 -rotate-40 h-45 opacity-50"
     />
     <article class="text-white text-center space-y-2">
-      <h1 class="font-title text-5xl">Carla y Tenoch</h1>
+      <h1 class="font-title text-5xl">
+        <span data-i18n="footer.name1">{t.footer.name1}</span>
+        <span class="font-elegant italic mx-2.5" data-i18n="footer.and"> {t.footer.and} </span>
+        <span data-i18n="footer.name2">{t.footer.name2}</span>
+      </h1>
       <div class="uppercase">
-        <p class="inline">19 de diciembre del 2026</p>
+        <p class="inline" data-i18n="footer.date">{t.footer.date}</p>
         <Circle class="size-1.5 fill-white mx-2.5 inline" />
-        <p class="inline">Colima, MX</p>
+        <p class="inline" data-i18n="footer.location">{t.footer.location}</p>
       </div>
-      <p>Gracias por acompañarnos en este día tan especial.</p>
+      <p data-i18n="footer.thanks">{t.footer.thanks}</p>
     </article>
     <img
       src="/images/ornamenta-03.svg"

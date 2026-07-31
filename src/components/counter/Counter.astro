@@ -1,20 +1,17 @@
 ---
 import TimeItem from "./TimeItem.astro";
+import { t } from "@/i18n";
 ---
 
 <article class="text-white flex justify-center my-4">
   <div class="flex gap-1 lg:gap-3.5">
-    <!-- ? Días: -->
-    <TimeItem value="00" id="days" label="Días" />
+    <TimeItem value="00" id="days" label={t.counter.days} labelKey="counter.days" />
     <p class="text-3xl lg:text-5xl">:</p>
-    <!-- ? Horas: -->
-    <TimeItem value="00" id="hours" label="Horas" />
+    <TimeItem value="00" id="hours" label={t.counter.hours} labelKey="counter.hours" />
     <p class="text-3xl lg:text-5xl">:</p>
-    <!-- ? Minutos: -->
-    <TimeItem value="00" id="minutes" label="Minutos" />
+    <TimeItem value="00" id="minutes" label={t.counter.minutes} labelKey="counter.minutes" />
     <p class="text-3xl lg:text-5xl">:</p>
-    <!-- ? Segundos: -->
-    <TimeItem value="00" id="seconds" label="Segundos" />
+    <TimeItem value="00" id="seconds" label={t.counter.seconds} labelKey="counter.seconds" />
   </div>
 </article>
 

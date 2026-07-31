@@ -1,17 +1,23 @@
 ---
+import { t } from "@/i18n";
+
 interface Props {
   id: string;
   name?: string;
   yesLabel?: string;
+  yesLabelKey?: string;
   noLabel?: string;
+  noLabelKey?: string;
   checked?: boolean;
 }
 
 const {
   id,
   name = id,
-  yesLabel = "Sí asistiré",
-  noLabel = "No podré asistir",
+  yesLabel = t.form.attendingYes,
+  yesLabelKey = "form.attendingYes",
+  noLabel = t.form.attendingNo,
+  noLabelKey = "form.attendingNo",
   checked = false,
 } = Astro.props;
 ---
@@ -24,7 +30,7 @@ const {
         <path d="M20 6 9 17l-5-5"></path>
       </svg>
     </span>
-    {yesLabel}
+    <span data-i18n={yesLabelKey}>{yesLabel}</span>
   </label>
   <label class="option option-no" for={id}>
     <span class="box">
@@ -32,7 +38,7 @@ const {
         <path d="M18 6 6 18M6 6l12 12"></path>
       </svg>
     </span>
-    {noLabel}
+    <span data-i18n={noLabelKey}>{noLabel}</span>
   </label>
 </div>
 

@@ -2,35 +2,36 @@
 import Divider from "@/components/common/Divider.astro";
 import DetailCard from "@/components/DetailCard.astro";
 import { Calendar, Church, Wine } from "@lucide/astro";
+import { t } from "@/i18n";
 
 const detailsData = [
   {
     icon: Calendar,
-    title: "Fecha",
-    value: "Sábado 19 de diciembre del 2026",
+    title: t.details.fecha.title,
+    titleKey: "details.fecha.title",
+    value: t.details.fecha.value,
+    valueKey: "details.fecha.value",
   },
   {
     icon: Church,
-    title: "Ceremonia",
-    value: [
-      "Templo del Sagrado Corazón de Jesús",
-      "04:00 pm",
-      "Aldama s/n, Centro 28000 Colima, Col., México",
-    ],
+    title: t.details.ceremonia.title,
+    titleKey: "details.ceremonia.title",
+    value: t.details.ceremonia.value,
+    valueKey: "details.ceremonia.value",
     button: true,
-    buttonText: "Ver en mapa",
+    buttonText: t.details.ceremonia.buttonText,
+    buttonTextKey: "details.ceremonia.buttonText",
     href: "https://maps.app.goo.gl/Yv8kmRFQMVP9dwyV8",
   },
   {
     icon: Wine,
-    title: "Recepción",
-    value: [
-      "Jardín campestre Zona mágica",
-      "06:00 pm",
-      "2459 Comala, Col., México",
-    ],
+    title: t.details.recepcion.title,
+    titleKey: "details.recepcion.title",
+    value: t.details.recepcion.value,
+    valueKey: "details.recepcion.value",
     button: true,
-    buttonText: "¿Cómo llegar?",
+    buttonText: t.details.recepcion.buttonText,
+    buttonTextKey: "details.recepcion.buttonText",
     href: "https://maps.app.goo.gl/vR3UKWxT7SJfxYuo7",
   },
 ];
@@ -41,8 +42,9 @@ const detailsData = [
     <article class="mx-auto w-fit">
       <h1
         class="text-center text-main-600 uppercase text-lg font-subtitle font-bold tracking-wider"
+        data-i18n="details.heading"
       >
-        Detalles del evento
+        {t.details.heading}
       </h1>
       <Divider color="red" />
     </article>

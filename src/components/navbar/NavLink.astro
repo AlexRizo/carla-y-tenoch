@@ -5,14 +5,15 @@ import type { AstroComponent } from "@lucide/astro";
 interface Props {
   href: string;
   label: string | AstroComponent;
+  labelKey?: string;
   className?: string;
 }
 
-const { href, label, className } = Astro.props;
+const { href, label, labelKey, className } = Astro.props;
 
 const Icon = label as AstroComponent;
 ---
 
-<a href={href} class={cn("text-lg text-white", className)}>
+<a href={href} class={cn("text-lg text-white", className)} data-i18n={labelKey}>
   {typeof Icon === "string" ? label : <Icon />}
 </a>

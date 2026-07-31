@@ -4,24 +4,28 @@ import type { AstroComponent } from "@lucide/astro";
 interface Props {
   icon: AstroComponent;
   title: string;
+  titleKey?: string;
   description: string;
+  descriptionKey?: string;
   href: string;
   label: string;
+  labelKey?: string;
 }
 
-const { icon: Icon, title, description, href, label } = Astro.props;
+const { icon: Icon, title, titleKey, description, descriptionKey, href, label, labelKey } = Astro.props;
 ---
 
 <article class="flex flex-col items-center gap-3 w-full py-6">
   <div class="bg-primary rounded-full">
     <Icon class="size-10 text-secondary-600" stroke-width={1.25} />
   </div>
-  <h2 class="text-sm font-semibold uppercase">{title}</h2>
-  <p class="text-xs text-center leading-relaxed max-w-50.5">{description}</p>
+  <h2 class="text-sm font-semibold uppercase" data-i18n={titleKey}>{title}</h2>
+  <p class="text-xs text-center leading-relaxed max-w-50.5" data-i18n={descriptionKey}>{description}</p>
   <a
     href={href}
     target={href.startsWith("#") ? undefined : "_blank"}
     class="text-xs uppercase text-white px-6 py-1.5 rounded bg-secondary-600 hover:opacity-90 transition-opacity mt-auto"
+    data-i18n={labelKey}
     >{label}</a
   >
 </article>

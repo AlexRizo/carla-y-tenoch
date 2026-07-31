@@ -2,49 +2,57 @@
 import { Building2, Church, Landmark, MapPin, Mountain, Sailboat, Soup, TreePalm, X } from "@lucide/astro";
 import RecommendationRow from "@/components/recommendations/RecommendationRow.astro";
 import Divider from "../common/Divider.astro";
+import { t } from "@/i18n";
 
 const RECOMMENDATIONS = [
   {
     icon: Church,
-    title: "Comala",
-    description:
-      "Recorre su centro, disfruta los portales y prueba el café local en uno de los pueblos más encantadores del estado.",
+    title: t.recommendationsModal.comala.title,
+    titleKey: "recommendationsModal.comala.title",
+    description: t.recommendationsModal.comala.description,
+    descriptionKey: "recommendationsModal.comala.description",
   },
   {
     icon: Landmark,
-    title: "Nogueras y cultura",
-    description:
-      "Visita Nogueras para conocer su historia, arte y rincones llenos de identidad colimense.",
+    title: t.recommendationsModal.nogueras.title,
+    titleKey: "recommendationsModal.nogueras.title",
+    description: t.recommendationsModal.nogueras.description,
+    descriptionKey: "recommendationsModal.nogueras.description",
   },
   {
     icon: Mountain,
-    title: "Montaña y naturaleza",
-    description:
-      "Si te gusta la naturaleza, aprovecha las vistas hacia la zona del Volcán y lleva un suéter ligero para la tarde.",
+    title: t.recommendationsModal.montana.title,
+    titleKey: "recommendationsModal.montana.title",
+    description: t.recommendationsModal.montana.description,
+    descriptionKey: "recommendationsModal.montana.description",
   },
   {
     icon: Building2,
-    title: "Centro de Colima",
-    description:
-      "Pasea por el centro histórico, sus jardines y templos para disfrutar una parte clásica de la ciudad.",
+    title: t.recommendationsModal.centro.title,
+    titleKey: "recommendationsModal.centro.title",
+    description: t.recommendationsModal.centro.description,
+    descriptionKey: "recommendationsModal.centro.description",
   },
   {
     icon: TreePalm,
-    title: "Playa en Manzanillo",
-    description:
-      "Ideal para disfrutar del mar, restaurantes frente a la playa y atardeceres inolvidables.",
+    title: t.recommendationsModal.manzanillo.title,
+    titleKey: "recommendationsModal.manzanillo.title",
+    description: t.recommendationsModal.manzanillo.description,
+    descriptionKey: "recommendationsModal.manzanillo.description",
   },
   {
     icon: Sailboat,
-    title: "Cuyutlán y costa",
-    description:
-      "Si prefieres una escapada más tranquila, visita Cuyutlán o El Paraíso y disfruta mariscos y vistas al mar.",
+    title: t.recommendationsModal.cuyutlan.title,
+    titleKey: "recommendationsModal.cuyutlan.title",
+    description: t.recommendationsModal.cuyutlan.description,
+    descriptionKey: "recommendationsModal.cuyutlan.description",
   },
   {
     icon: Soup,
-    title: "Gastronomía local",
-    description:
-      "No te vayas sin probar sopitos, tatemado, pozole seco, café de Comala y una refrescante tuba.",
+    title: t.recommendationsModal.gastronomia.title,
+    titleKey: "recommendationsModal.gastronomia.title",
+    description: t.recommendationsModal.gastronomia.description,
+    descriptionKey: "recommendationsModal.gastronomia.description",
     dashed: true,
   },
 ];
@@ -59,15 +67,17 @@ const RECOMMENDATIONS = [
       <button
         id="recomendaciones-modal-close"
         type="button"
-        aria-label="Cerrar"
+        aria-label={t.common.close}
+        data-i18n="common.close"
+        data-i18n-attr="aria-label"
         class="absolute right-3 top-3 rounded-full p-1.5 text-secondary-600 hover:bg-secondary-200/50"
       >
         <X class="size-5" />
       </button>
       <MapPin class="size-8 text-secondary-600" stroke-width={1.5} />
-      <h2 class="text-lg font-bold uppercase tracking-wide text-secondary-600">Recomendaciones</h2>
+      <h2 class="text-lg font-bold uppercase tracking-wide text-secondary-600" data-i18n="recommendationsModal.title">{t.recommendationsModal.title}</h2>
       <div class="flex flex-col items-center gap-1 pt-1">
-        <p class="text-xs text-secondary-600">Ideas para disfrutar tu visita a Colima</p>
+        <p class="text-xs text-secondary-600" data-i18n="recommendationsModal.subtitle">{t.recommendationsModal.subtitle}</p>
       </div>
     </header>
 
@@ -77,7 +87,9 @@ const RECOMMENDATIONS = [
           <RecommendationRow
             icon={item.icon}
             title={item.title}
+            titleKey={item.titleKey}
             description={item.description}
+            descriptionKey={item.descriptionKey}
             dashed={item.dashed}
           />
         ))
@@ -85,8 +97,8 @@ const RECOMMENDATIONS = [
     </div>
 
     <footer class="border-t border-main-600/25 px-5 py-3">
-      <p class="text-center text-[0.7rem] italic text-secondary-600">
-        Sugerencias para disfrutar Colima, de la montaña al mar.
+      <p class="text-center text-[0.7rem] italic text-secondary-600" data-i18n="recommendationsModal.footerNote">
+        {t.recommendationsModal.footerNote}
       </p>
     </footer>
   </div>

@@ -4,43 +4,48 @@ import HotelsModal from "@/components/hotel/HotelsModal.astro";
 import AirportModal from "@/components/airport/AirportModal.astro";
 import RecommendationsModal from "@/components/recommendations/RecommendationsModal.astro";
 import { Building2, CarFront, CloudSun, MapPin, Plane } from "@lucide/astro";
+import { t } from "@/i18n";
 
 const INFO_DATA = [
   {
     icon: Building2,
-    title: "Hospedaje",
-    description: "Hoteles sugeridos para tu estancia",
+    title: t.info.hospedaje.title,
+    titleKey: "info.hospedaje.title",
+    description: t.info.hospedaje.description,
+    descriptionKey: "info.hospedaje.description",
     href: "#hospedaje-modal",
-    label: "Ver opciones",
+    label: t.info.hospedaje.label,
+    labelKey: "info.hospedaje.label",
   },
   {
     icon: Plane,
-    title: "Aeropuerto",
-    description: "Aeropuerto internacional de Colima (CLQ) a 25 min del evento",
+    title: t.info.aeropuerto.title,
+    titleKey: "info.aeropuerto.title",
+    description: t.info.aeropuerto.description,
+    descriptionKey: "info.aeropuerto.description",
     href: "#aeropuerto-modal",
-    label: "Más info",
+    label: t.info.aeropuerto.label,
+    labelKey: "info.aeropuerto.label",
   },
   {
     icon: CloudSun,
-    title: "Clima",
-    description: "Máx 29°C / Mín 18°C. Clima agradable en diciembre",
+    title: t.info.clima.title,
+    titleKey: "info.clima.title",
+    description: t.info.clima.description,
+    descriptionKey: "info.clima.description",
     href: "https://www.meteored.mx/clima_Comala-America+Norte-Mexico-Colima--1-21207.html",
-    label: "Ver pronóstico",
+    label: t.info.clima.label,
+    labelKey: "info.clima.label",
   },
-  // {
-  //   icon: CarFront,
-  //   title: "Transporte",
-  //   description:
-  //     "Transporte disponible. Estacionamiento en el lugar. Uber recomendado",
-  //   href: "",
-  //   label: "Ver más",
-  // },
   {
     icon: MapPin,
-    title: "Recomendaciones",
-    description: "Tips para disfrutar tu visita a Colima",
+    title: t.info.recomendaciones.title,
+    titleKey: "info.recomendaciones.title",
+    description: t.info.recomendaciones.description,
+    descriptionKey: "info.recomendaciones.description",
     href: "#recomendaciones-modal",
-    label: "Ver recomendaciones",
+    label: t.info.recomendaciones.label,
+    labelKey: "info.recomendaciones.label",
   },
 ];
 ---
@@ -57,9 +62,12 @@ const INFO_DATA = [
         <InfoItem
           icon={info.icon}
           title={info.title}
+          titleKey={info.titleKey}
           description={info.description}
+          descriptionKey={info.descriptionKey}
           href={info.href}
           label={info.label}
+          labelKey={info.labelKey}
         />
       ))
     }

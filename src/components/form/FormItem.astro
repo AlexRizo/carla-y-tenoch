@@ -2,12 +2,13 @@
 interface Props {
   id: string;
   label?: string;
+  labelKey?: string;
 }
 
-const { id, label } = Astro.props;
+const { id, label, labelKey } = Astro.props;
 ---
 
 <div class="flex flex-col gap-1 lg:min-w-78">
-  {label && <label class="text-xs" for={id}>{label}</label>}
+  {label && <label class="text-xs" for={id} data-i18n={labelKey}>{label}</label>}
   <slot />
 </div>

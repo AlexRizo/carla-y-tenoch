@@ -1,11 +1,13 @@
 ---
 import { Building2, Mountain, Trees, X } from "@lucide/astro";
 import HotelCard from "@/components/hotel/HotelCard.astro";
+import { t } from "@/i18n";
 
 const HOTEL_GROUPS = [
   {
     icon: Building2,
-    zone: "Centro de Colima",
+    zone: t.hotelsModal.zones.centroColima,
+    zoneKey: "hotelsModal.zones.centroColima",
     hotels: [
       {
         image: "/images/hotels/hacienda-del-gobernador.webp",
@@ -25,7 +27,8 @@ const HOTEL_GROUPS = [
   },
   {
     icon: Trees,
-    zone: "Villa de Álvarez",
+    zone: t.hotelsModal.zones.villaDeAlvarez,
+    zoneKey: "hotelsModal.zones.villaDeAlvarez",
     hotels: [
       {
         image: "/images/hotels/concierge-plaza-la-villa.webp",
@@ -38,7 +41,8 @@ const HOTEL_GROUPS = [
   },
   {
     icon: Mountain,
-    zone: "Comala",
+    zone: t.hotelsModal.zones.comala,
+    zoneKey: "hotelsModal.zones.comala",
     hotels: [
       {
         image: "/images/hotels/comalitos-hotel.webp",
@@ -68,14 +72,16 @@ const HOTEL_GROUPS = [
       <button
         id="hospedaje-modal-close"
         type="button"
-        aria-label="Cerrar"
+        aria-label={t.common.close}
+        data-i18n="common.close"
+        data-i18n-attr="aria-label"
         class="absolute right-3 top-3 rounded-full p-1.5 text-secondary-600 hover:bg-secondary-200/50"
       >
         <X class="size-5" />
       </button>
       <Building2 class="size-8 text-secondary-600" stroke-width={1.5} />
-      <h2 class="text-lg font-bold uppercase tracking-wide text-secondary-600">Hospedaje</h2>
-      <p class="text-xs text-secondary-600">Hoteles sugeridos para tu estancia</p>
+      <h2 class="text-lg font-bold uppercase tracking-wide text-secondary-600" data-i18n="hotelsModal.title">{t.hotelsModal.title}</h2>
+      <p class="text-xs text-secondary-600" data-i18n="hotelsModal.subtitle">{t.hotelsModal.subtitle}</p>
     </header>
 
     <div class="flex-1 space-y-6 overflow-y-auto px-5 py-5">
@@ -84,7 +90,7 @@ const HOTEL_GROUPS = [
           <div class="space-y-3">
             <div class="flex items-center gap-2 rounded-full bg-secondary-600 px-3 py-1.5 text-white w-fit">
               <group.icon class="size-4" stroke-width={1.5} />
-              <span class="text-xs font-semibold uppercase">{group.zone}</span>
+              <span class="text-xs font-semibold uppercase" data-i18n={group.zoneKey}>{group.zone}</span>
             </div>
             <div class="space-y-3">
               {group.hotels.map((hotel) => (
@@ -103,8 +109,8 @@ const HOTEL_GROUPS = [
     </div>
 
     <footer class="border-t border-main-600/25 px-5 py-3">
-      <p class="text-center text-[0.7rem] text-secondary-600">
-        Tiempos estimados en auto. Pueden variar según el tráfico.
+      <p class="text-center text-[0.7rem] text-secondary-600" data-i18n="hotelsModal.footerNote">
+        {t.hotelsModal.footerNote}
       </p>
     </footer>
   </div>

@@ -1,29 +1,39 @@
 ---
 import { Hash } from "@lucide/astro";
 import ExtraItem from "@/components/extras/ExtraItem.astro";
+import { t } from "@/i18n";
 
 const EXTRAS_DATA = [
   {
     icon: "spotify",
-    title: "Playlist",
-    description: "Nuestra playlist especial para ti",
+    title: t.extras.playlist.title,
+    titleKey: "extras.playlist.title",
+    description: t.extras.playlist.description,
+    descriptionKey: "extras.playlist.description",
     href: "https://open.spotify.com/playlist/05kYVhNZLFwOUmUkSJpZZm?si=CN31Eq9jT-q36gi8H7eqsQ&utm_source=copy-link&pi=VdwehctDTPGNy&nd=1&dlsi=d9f9d67df5bf44cd",
-    label: "Ver opciones",
+    label: t.extras.playlist.label,
+    labelKey: "extras.playlist.label",
   },
   {
     icon: Hash,
-    title: "Hashtag",
-    description: "Comparte tus fotos con nuestro hashtag #CarlaYTenoch2026",
+    title: t.extras.hashtag.title,
+    titleKey: "extras.hashtag.title",
+    description: t.extras.hashtag.description,
+    descriptionKey: "extras.hashtag.description",
     href: "",
-    label: "Copiar",
+    label: t.extras.hashtag.label,
+    labelKey: "extras.hashtag.label",
     copyText: "#CarlaYTenoch2026",
   },
   {
     icon: "googledrive",
-    title: "Comparte tus fotos",
-    description: "Sube tus fotos y sé parte del recuerdo",
+    title: t.extras.drive.title,
+    titleKey: "extras.drive.title",
+    description: t.extras.drive.description,
+    descriptionKey: "extras.drive.description",
     href: "https://drive.google.com/drive/folders/1oW7xnKna2OyEh7OMG5wfaVZ2gUvYgIfx",
-    label: "Ir al drive",
+    label: t.extras.drive.label,
+    labelKey: "extras.drive.label",
   },
 ];
 ---
@@ -32,8 +42,9 @@ const EXTRAS_DATA = [
   <div class="container mx-auto lg:pb-6 px-4 lg:px-0">
     <h1
       class="text-xl text-main-500 tracking-wider text-center pt-6 pb-2 uppercase"
+      data-i18n="extras.heading"
     >
-      Extras
+      {t.extras.heading}
     </h1>
     <div
       class="flex flex-col lg:flex-row justify-center divide-y lg:divide-y-0 lg:divide-x divide-main-600/25 max-w-96 lg:max-w-none mx-auto"
@@ -43,9 +54,12 @@ const EXTRAS_DATA = [
           <ExtraItem
             icon={extra.icon}
             title={extra.title}
+            titleKey={extra.titleKey}
             description={extra.description}
+            descriptionKey={extra.descriptionKey}
             href={extra.href}
             label={extra.label}
+            labelKey={extra.labelKey}
             copyText={extra.copyText}
           />
         ))

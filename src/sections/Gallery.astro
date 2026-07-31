@@ -1,6 +1,7 @@
 ---
 import Carousel from "@/components/Carousel.astro";
 import Divider from "@/components/common/Divider.astro";
+import { t } from "@/i18n";
 
 // TODO: reemplazar con las fotos reales de la galería
 const images = [
@@ -20,14 +21,11 @@ const images = [
   <div class="max-w-96 px-4 lg:container mx-auto flex flex-col lg:flex-row items-center gap-4 justify-between">
     <article class="flex flex-col lg:w-72 text-center lg:text-left">
       <h1 class="text-3xl text-main-600 font-subtitle font-medium uppercase">
-        Estás invitado/a<br /> a nuestra boda
+        <span data-i18n="gallery.titleLine1">{t.gallery.titleLine1}</span><br /> <span data-i18n="gallery.titleLine2">{t.gallery.titleLine2}</span>
       </h1>
       <Divider color="red" />
-      <p>
-        Nos llena de alegría compartir uno de los días más importantes de
-        nuestras vidas. Esperamos que puedas acompañarnos para celebrar juntos
-        este momento tan especial. Tu presencia hará de este día un recuerdo
-        inolvidable.
+      <p data-i18n="gallery.description">
+        {t.gallery.description}
       </p>
     </article>
 

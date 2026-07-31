@@ -1,5 +1,6 @@
 ---
 import { Church, Wine } from "@lucide/astro";
+import { t } from "@/i18n";
 
 interface Props {
   image: string;
@@ -30,17 +31,17 @@ const { image, name, church_time, reception_time, href } = Astro.props;
     <div class="flex flex-1 flex-row items-center justify-center gap-1 text-secondary-600 sm:flex-none">
       <Church class="size-5" stroke-width={1.5} />
       <p class="text-center text-[0.65rem] leading-tight">
-        <span class="block">Al templo</span>
+        <span class="block" data-i18n="hotelsModal.toChurch">{t.hotelsModal.toChurch}</span>
         <span class="block font-semibold text-sm">{church_time} min</span>
-        <span class="block">en auto</span>
+        <span class="block" data-i18n="hotelsModal.byCar">{t.hotelsModal.byCar}</span>
       </p>
     </div>
     <div class="flex flex-1 flex-row items-center justify-center gap-1 text-secondary-600 sm:flex-none">
       <Wine class="size-5" stroke-width={1.5} />
       <p class="text-center text-[0.65rem] leading-tight">
-        <span class="block">Al salón</span>
+        <span class="block" data-i18n="hotelsModal.toVenue">{t.hotelsModal.toVenue}</span>
         <span class="block font-semibold text-sm">{reception_time} min</span>
-        <span class="block">en auto</span>
+        <span class="block" data-i18n="hotelsModal.byCar">{t.hotelsModal.byCar}</span>
       </p>
     </div>
   </div>
