@@ -82,7 +82,7 @@ export const en = {
     label: "Dress code",
     heading: "Formal",
     description:
-      "Formal We want you to enjoy this celebration with us. We invite you to dress in formal and elegant attire for the occasion.",
+      "We want you to enjoy this celebration with us. We invite you to dress in formal and elegant attire for the occasion.",
   },
   gift: {
     label: "Our best wedding gift",
